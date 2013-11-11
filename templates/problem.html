@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="stepbystep">
+        <meta name="author" content="zrq495">
+        <title>StepByStep</title>
+        <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../static/css/docs.css" rel="stylesheet">
+        <link href="../static/css/github.css" rel="stylesheet">
+        <link rel="icon" type="image/png" href="../static/favicon.ico">
+        <style>
+            body{font-family:"ff-tisa-web-pro-1","ff-tisa-web-pro-2","Lucida Grande","Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","WenQuanYi Micro Hei",sans-serif;}
+            h1, .h1, h2, .h2, h3, .h3, h4, .h4, .lead {font-family:"ff-tisa-web-pro-1","ff-tisa-web-pro-2","Lucida Grande","Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;}
+            pre code { background: transparent; }
+        </style>
+    </head>
+
+    <table class="table table-bordered">
+        <tr>
+            <td rowspan="13">基本算法</td>
+            <td rowspan="2">枚举</td>
+            <td>1753</td>
+        </tr>
+        <tr>
+            <td>2965</td>
+        </tr>
+        <tr>
+            <td rowspan="3">贪心</td>
+            <td>1328</td>
+        </tr>
+        <tr>
+            <td>2109</td>
+        </tr>
+        <tr>
+            <td>2586</td>
+        </tr>
+        <tr>
+            <td>分治法</td>
+            <td>2524</td>
+        </tr>
+        <tr>
+			<td>递推</td>
+			<td>2506</td>
+		</tr>
+		<tr>
+			<td>构造法</td>
+			<td>3295</td>
+		</tr>
+		<tr>
+			<td rowspan="5">模拟法</td>
+			<td>1068</td>
+		</tr>
+		<tr>
+			<td>2632</td>
+		</tr>
+		<tr>
+			<td>1573</td>
+		</tr>
+		<tr>
+			<td>2993</td>
+		</tr>
+		<tr>
+			<td>2996</td>
+		</tr>
+		<tr>
+			<td rowspan="20">图算法</td>
+			<td rowspan="3">图的深度优先遍历和广度优先遍历</td>
+			<td>3278</td>
+		</tr>
+		<tr>
+			<td>2049</td>
+		</tr>
+		<tr>
+			<td>3083</td>
+		</tr>
+		<tr>
+			<td rowspan="6">最短路径算法</td>
+			<td>1860</td>
+		</tr>
+		<tr>
+			<td>3259</td>
+		</tr>
+		<tr>
+			<td>1062</td>
+		</tr>
+		<tr>
+			<td>2253</td>
+		</tr>
+		<tr>
+			<td>1125</td>
+		</tr>
+		<tr>
+			<td>2240</td>
+		</tr>
+		<tr>
+			<td rowspan="4">最小生成树算法</td>
+			<td>1789</td>
+		</tr>
+		<tr>
+			<td>2485</td>
+		</tr>
+		<tr>
+			<td>1258</td>
+		</tr>
+		<tr>
+			<td>3026</td>
+		</tr>
+		<tr>
+			<td rowspan="3">拓扑排序</td>
+			<td>1094</td>
+		</tr>
+		<tr>
+			<td>3267</td>
+		</tr>
+		<tr>
+			<td>3687</td>
+		</tr>
+		<tr>
+			<td rowspan="2">二分图的最大匹配</td>
+			<td>3041</td>
+		</tr>
+		<tr>
+			<td>3020</td>
+		</tr>
+		<tr>
+			<td rowspan="2">最大流的增广路算法</td>
+			<td>1459</td>
+		</tr>
+		<tr>
+			<td>3436</td>
+		</tr>
+		<tr>
+			<td rowspan="17">数据结构</td>
+			<td rowspan="3">串</td>
+			<td>1035</td>
+		</tr>
+		<tr>
+			<td>3080</td>
+		</tr>
+		<tr>
+			<td>1936</td>
+		</tr>
+		<tr>
+			<td rowspan="2">排序</td>
+			<td>2388</td>
+		</tr>
+		<tr>
+			<td>2299</td>
+		</tr>
+		<tr>
+			<td>简单并查集的应用</td>
+			<td>1611</td>
+		</tr>
+		<tr>
+			<td rowspan="6">哈希表和二分查找等高效查找法</td>
+			<td>3349</td>
+		</tr>
+		<tr>
+			<td>3274</td>
+		</tr>
+		<tr>
+			<td>2151</td>
+		</tr>
+		<tr>
+			<td>1840</td>
+		</tr>
+		<tr>
+			<td>2002</td>
+		</tr>
+		<tr>
+			<td>2503</td>
+		</tr>
+		<tr>
+			<td>哈夫曼树</td>
+			<td>3253</td>
+		</tr>
+		<tr>
+			<td rowspan="2">堆,优先队列</td>
+			<td>2442</td>
+		</tr>
+		<tr>
+			<td>1442</td>
+		</tr>
+		<tr>
+			<td rowspan="2">trie树</td>
+			<td>2513</td>
+		</tr>
+		<tr>
+			<td>2418</td>
+		</tr>
+		<tr>
+			<td rowspan="14">简单搜索</td>
+			<td rowspan="5">深度优先搜索</td>
+			<td>2488</td>
+		</tr>
+		<tr>
+			<td>3083</td>
+		</tr>
+		<tr>
+			<td>3009</td>
+		</tr>
+		<tr>
+			<td>1321</td>
+		</tr>
+		<tr>
+			<td>2251</td>
+		</tr>
+		<tr>
+			<td rowspan="5">广度优先搜索</td>
+			<td>3278</td>
+		</tr>
+		<tr>
+			<td>1426</td>
+		</tr>
+		<tr>
+			<td>3126</td>
+		</tr>
+		<tr>
+			<td>3087</td>
+		</tr>
+		<tr>
+			<td>3414</td>
+		</tr>
+		<tr>
+			<td rowspan="4">简单搜索技巧和剪枝</td>
+			<td>2531</td>
+		</tr>
+		<tr>
+			<td>1416</td>
+		</tr>
+		<tr>
+			<td>2676</td>
+		</tr>
+		<tr>
+			<td>1129</td>
+		</tr>
+		<tr>
+			<td rowspan="9">动态规划</td>
+			<td rowspan="2">背包问题</td>
+			<td>1837</td>
+		</tr>
+		<tr>
+			<td>1276</td>
+		</tr>
+		<tr>
+			<td rowspan="7">型如下表的简单DP</td>
+			<td>3267</td>
+		</tr>
+		<tr>
+			<td>1836</td>
+		</tr>
+		<tr>
+			<td>1260</td>
+		</tr>
+		<tr>
+			<td>2533</td>
+		</tr>
+		<tr>
+			<td>3176</td>
+		</tr>
+		<tr>
+			<td>1080</td>
+		</tr>
+		<tr>
+			<td>1159</td>
+		</tr>
+		<tr>
+			<td rowspan="12">数学</td>
+			<td rowspan="4">组合数学</td>
+			<td>3252</td>
+		</tr>
+		<tr>
+			<td>1850</td>
+		</tr>
+		<tr>
+			<td>1019</td>
+		</tr>
+		<tr>
+			<td>1942</td>
+		</tr>
+		<tr>
+			<td rowspan="4">数论</td>
+			<td>2635</td>
+		</tr>
+		<tr>
+			<td>3292</td>
+		</tr>
+		<tr>
+			<td>1845</td>
+		</tr>
+		<tr>
+			<td>2115</td>
+		</tr>
+		<tr>
+			<td rowspan="4">计算方法</td>
+			<td>3273</td>
+		</tr>
+		<tr>
+			<td>3258</td>
+		</tr>
+		<tr>
+			<td>1905</td>
+		</tr>
+		<tr>
+			<td>3122</td>
+		</tr>
+		<tr>
+			<td rowspan="7">计算几何学</td>
+			<td>几何公式</td>
+			<td>1265</td>
+		</tr>
+		<tr>
+			<td rowspan="2">叉积和点积的运用</td>
+			<td>2031</td>
+		</tr>
+		<tr>
+			<td>1039</td>
+		</tr>
+		<tr>
+			<td rowspan="2">多边型的简单算法和相关判定</td>
+			<td>1408</td>
+		</tr>
+		<tr>
+			<td>1584</td>
+		</tr>
+		<tr>
+			<td rowspan="2">凸包</td>
+			<td>2187</td>
+		</tr>
+		<tr>
+			<td>1113</td>
+		</tr>
+		<tr>
+			<td rowspan="7">基本算法</td>
+			<td rowspan="2">C++的标准模版库的应用</td>
+			<td>3096</td>
+		</tr>
+		<tr>
+			<td>3007</td>
+		</tr>
+		<tr>
+			<td rowspan="5">较为复杂的模拟题的训练</td>
+			<td>3393</td>
+		</tr>
+		<tr>
+			<td>1472</td>
+		</tr>
+		<tr>
+			<td>3371</td>
+		</tr>
+		<tr>
+			<td>1027</td>
+		</tr>
+		<tr>
+			<td>2706</td>
+		</tr>
+		<tr>
+			<td rowspan="19">图算法</td>
+			<td rowspan="5">差分约束系统的建立和求解</td>
+			<td>1201</td>
+		</tr>
+		<tr>
+			<td>2983</td>
+		</tr>
+		<tr>
+			<td>3159</td>
+		</tr>
+		<tr>
+			<td>1275</td>
+		</tr>
+		<tr>
+			<td>1364</td>
+		</tr>
+		<tr>
+			<td rowspan="3">最小费用最大流</td>
+			<td>2516</td>
+		</tr>
+		<tr>
+			<td>2195</td>
+		</tr>
+		<tr>
+			<td>3422</td>
+		</tr>
+		<tr>
+			<td rowspan="2">双连通分量</td>
+			<td>2942</td>
+		</tr>
+		<tr>
+			<td>3694</td>
+		</tr>
+		<tr>
+			<td rowspan="3">强连通分支及其缩点</td>
+			<td>2186</td>
+		</tr>
+		<tr>
+			<td>3592</td>
+		</tr>
+		<tr>
+			<td>3114</td>
+		</tr>
+		<tr>
+			<td>图的割边和割点</td>
+			<td>3352</td>
+		</tr>
+		<tr>
+			<td rowspan="2">最小割模型</td>
+			<td>3308</td>
+		</tr>
+		<tr>
+			<td>3155</td>
+		</tr>
+		<tr>
+			<td rowspan="3">KM算法(最大权/最小权）</td>
+			<td>2195</td>
+		</tr>
+		<tr>
+			<td>2400</td>
+		</tr>
+		<tr>
+			<td>3686</td>
+		</tr>
+		<tr>
+			<td rowspan="17">数据结构</td>
+			<td rowspan="5">线段树</td>
+			<td>2528</td>
+		</tr>
+		<tr>
+			<td>2828</td>
+		</tr>
+		<tr>
+			<td>2777</td>
+		</tr>
+		<tr>
+			<td>2886</td>
+		</tr>
+		<tr>
+			<td>2750</td>
+		</tr>
+		<tr>
+			<td rowspan="4">静态二叉检索树,平衡树treap,splay</td>
+			<td>2482</td>
+		</tr>
+		<tr>
+			<td>2352</td>
+		</tr>
+		<tr>
+			<td>2892</td>
+		</tr>
+		<tr>
+			<td>3468</td>
+		</tr>
+		<tr>
+			<td rowspan="2">树状树组</td>
+			<td>1195</td>
+		</tr>
+		<tr>
+			<td>3321</td>
+		</tr>
+		<tr>
+			<td rowspan="2">RMQ</td>
+			<td>3264</td>
+		</tr>
+		<tr>
+			<td>3368</td>
+		</tr>
+		<tr>
+			<td rowspan="2">并查集的高级应用</td>
+			<td>1703</td>
+		</tr>
+		<tr>
+			<td>2492</td>
+		</tr>
+		<tr>
+			<td rowspan="2">KMP算法</td>
+			<td>1961</td>
+		</tr>
+		<tr>
+			<td>2406</td>
+		</tr>
+		<tr>
+			<td rowspan="5">搜索</td>
+			<td>最优化剪枝和可行性剪枝</td>
+			<td>1699</td>
+		</tr>
+		<tr>
+			<td rowspan="2">搜索的技巧和优化</td>
+			<td>3411</td>
+		</tr>
+		<tr>
+			<td>1724</td>
+		</tr>
+		<tr>
+			<td rowspan="2">记忆化搜索</td>
+			<td>3373</td>
+		</tr>
+		<tr>
+			<td>1691</td>
+		</tr>
+		<tr>
+			<td rowspan="14">动态规划</td>
+			<td rowspan="7">较为复杂的动态规划</td>
+			<td>1191</td>
+		</tr>
+		<tr>
+			<td>1054</td>
+		</tr>
+		<tr>
+			<td>3280</td>
+		</tr>
+		<tr>
+			<td>2029</td>
+		</tr>
+		<tr>
+			<td>2948</td>
+		</tr>
+		<tr>
+			<td>1925</td>
+		</tr>
+		<tr>
+			<td>3034</td>
+		</tr>
+		<tr>
+			<td rowspan="3">记录状态的动态规划</td>
+			<td>3254</td>
+		</tr>
+		<tr>
+			<td>2411</td>
+		</tr>
+		<tr>
+			<td>1185</td>
+		</tr>
+		<tr>
+			<td rowspan="4">树型动态规划</td>
+			<td>2057</td>
+		</tr>
+		<tr>
+			<td>1947</td>
+		</tr>
+		<tr>
+			<td>2486</td>
+		</tr>
+		<tr>
+			<td>3140</td>
+		</tr>
+		<tr>
+			<td rowspan="26">数学</td>
+			<td rowspan="4">组合数学,polya定理,置换群</td>
+			<td>1286</td>
+		</tr>
+		<tr>
+			<td>2409</td>
+		</tr>
+		<tr>
+			<td>3270</td>
+		</tr>
+		<tr>
+			<td>1026</td>
+		</tr>
+		<tr>
+			<td rowspan="5">高斯消元法</td>
+			<td>2947</td>
+		</tr>
+		<tr>
+			<td>1487</td>
+		</tr>
+		<tr>
+			<td>2065</td>
+		</tr>
+		<tr>
+			<td>1166</td>
+		</tr>
+		<tr>
+			<td>1222</td>
+		</tr>
+		<tr>
+			<td rowspan="2">概率问题</td>
+			<td>3071</td>
+		</tr>
+		<tr>
+			<td>3440</td>
+		</tr>
+		<tr>
+			<td rowspan="4">GCD、扩展的欧几里德</td>
+			<td>1061</td>
+		</tr>
+		<tr>
+			<td>2891</td>
+		</tr>
+		<tr>
+			<td>3101</td>
+		</tr>
+		<tr>
+			<td>2115</td>
+		</tr>
+		<tr>
+			<td rowspan="5">计算方法(矩阵、三分等)</td>
+			<td>2976</td>
+		</tr>
+		<tr>
+			<td>3150</td>
+		</tr>
+		<tr>
+			<td>3422</td>
+		</tr>
+		<tr>
+			<td>3070</td>
+		</tr>
+		<tr>
+			<td>3301</td>
+		</tr>
+		<tr>
+			<td rowspan="2">随机化算法</td>
+			<td>3318</td>
+		</tr>
+		<tr>
+			<td>2454</td>
+		</tr>
+		<tr>
+			<td rowspan="4">杂题</td>
+			<td>1870</td>
+		</tr>
+		<tr>
+			<td>3296</td>
+		</tr>
+		<tr>
+			<td>3286</td>
+		</tr>
+		<tr>
+			<td>1095</td>
+		</tr>
+		<tr>
+			<td rowspan="15">计算几何学</td>
+			<td>坐标离散化</td>
+			<td>1151</td>
+		</tr>
+		<tr>
+			<td rowspan="6">扫描线算法</td>
+			<td>1765</td>
+		</tr>
+		<tr>
+			<td>1177</td>
+		</tr>
+		<tr>
+			<td>1151</td>
+		</tr>
+		<tr>
+			<td>3277</td>
+		</tr>
+		<tr>
+			<td>2280</td>
+		</tr>
+		<tr>
+			<td>3004</td>
+		</tr>
+		<tr>
+			<td rowspan="2">多边形的核</td>
+			<td>3130</td>
+		</tr>
+		<tr>
+			<td>3335</td>
+		</tr>
+		<tr>
+			<td rowspan="6">几何工具的综合应用</td>
+			<td>1819</td>
+		</tr>
+		<tr>
+			<td>1066</td>
+		</tr>
+		<tr>
+			<td>2043</td>
+		</tr>
+		<tr>
+			<td>3227</td>
+		</tr>
+		<tr>
+			<td>2165</td>
+		</tr>
+		<tr>
+			<td>3429</td>
+		</tr>
+		<tr>
+			<td rowspan="7">基本算法</td>
+			<td rowspan="6">代码快速写成</td>
+			<td>2525</td>
+		</tr>
+		<tr>
+			<td>1684</td>
+		</tr>
+		<tr>
+			<td>1421</td>
+		</tr>
+		<tr>
+			<td>1048</td>
+		</tr>
+		<tr>
+			<td>2050</td>
+		</tr>
+		<tr>
+			<td>3306</td>
+		</tr>
+		<tr>
+			<td>保证正确性和高效性</td>
+			<td>3434</td>
+		</tr>
+		<tr>
+			<td rowspan="24">图算法</td>
+			<td rowspan="6">度限制最小生成树和第K最短路,分数规划</td>
+			<td>1639</td>
+		</tr>
+		<tr>
+			<td>3621</td>
+		</tr>
+		<tr>
+			<td>2976</td>
+		</tr>
+		<tr>
+			<td>3255</td>
+		</tr>
+		<tr>
+			<td>2513</td>
+		</tr>
+		<tr>
+			<td>2449</td>
+		</tr>
+		<tr>
+			<td rowspan="8">最短路,最小生成树,二分图,最大流问题的相关理论</td>
+			<td>3155</td>
+		</tr>
+		<tr>
+			<td>2112</td>
+		</tr>
+		<tr>
+			<td>1966</td>
+		</tr>
+		<tr>
+			<td>3281</td>
+		</tr>
+		<tr>
+			<td>1087</td>
+		</tr>
+		<tr>
+			<td>2289</td>
+		</tr>
+		<tr>
+			<td>3216</td>
+		</tr>
+		<tr>
+			<td>2446</td>
+		</tr>
+		<tr>
+			<td>最优比率生成树</td>
+			<td>2728</td>
+		</tr>
+		<tr>
+			<td>最小树形图</td>
+			<td>3164</td>
+		</tr>
+		<tr>
+			<td>次小生成树</td>
+			<td>1697</td>
+		</tr>
+		<tr>
+			<td rowspan="6">2-SAT问题</td>
+			<td>3207</td>
+		</tr>
+		<tr>
+			<td>3678</td>
+		</tr>
+		<tr>
+			<td>3683</td>
+		</tr>
+		<tr>
+			<td>3648</td>
+		</tr>
+		<tr>
+			<td>2723</td>
+		</tr>
+		<tr>
+			<td>2749</td>
+		</tr>
+		<tr>
+			<td>无向图、有向图的最小环</td>
+			<td>1734</td>
+		</tr>
+		<tr>
+			<td rowspan="10">数据结构</td>
+			<td rowspan="2">trie图的建立和应用,DFA</td>
+			<td>2778</td>
+		</tr>
+		<tr>
+			<td>3691</td>
+		</tr>
+		<tr>
+			<td>LCA和RMQ问题</td>
+			<td>1330</td>
+		</tr>
+		<tr>
+			<td>双端队列和它的应用</td>
+			<td>2823</td>
+		</tr>
+		<tr>
+			<td rowspan="2">左偏树</td>
+			<td>3666</td>
+		</tr>
+		<tr>
+			<td>3016</td>
+		</tr>
+		<tr>
+			<td rowspan="4">后缀树,后缀数组</td>
+			<td>3415</td>
+		</tr>
+		<tr>
+			<td>3294</td>
+		</tr>
+		<tr>
+			<td>2774</td>
+		</tr>
+		<tr>
+			<td>2758</td>
+		</tr>
+		<tr>
+			<td rowspan="15">搜索</td>
+			<td rowspan="6">较麻烦的搜索题目训练</td>
+			<td>1069</td>
+		</tr>
+		<tr>
+			<td>3322</td>
+		</tr>
+		<tr>
+			<td>1475</td>
+		</tr>
+		<tr>
+			<td>1924</td>
+		</tr>
+		<tr>
+			<td>2049</td>
+		</tr>
+		<tr>
+			<td>3426</td>
+		</tr>
+		<tr>
+			<td rowspan="6">广搜的状态优化</td>
+			<td>1768</td>
+		</tr>
+		<tr>
+			<td>1184</td>
+		</tr>
+		<tr>
+			<td>1872</td>
+		</tr>
+		<tr>
+			<td>1324</td>
+		</tr>
+		<tr>
+			<td>2046</td>
+		</tr>
+		<tr>
+			<td>1482</td>
+		</tr>
+		<tr>
+			<td rowspan="3">深搜的优化</td>
+			<td>3131</td>
+		</tr>
+		<tr>
+			<td>2870</td>
+		</tr>
+		<tr>
+			<td>2286</td>
+		</tr>
+		<tr>
+			<td rowspan="10">动态规划</td>
+			<td rowspan="3">需要用数据结构优化的动态规划</td>
+			<td>2754</td>
+		</tr>
+		<tr>
+			<td>3378</td>
+		</tr>
+		<tr>
+			<td>3017</td>
+		</tr>
+		<tr>
+			<td rowspan="3">四边形不等式理论、斜率优化</td>
+			<td>1160</td>
+		</tr>
+		<tr>
+			<td>1180</td>
+		</tr>
+		<tr>
+			<td>3709</td>
+		</tr>
+		<tr>
+			<td rowspan="4">较难的状态DP、插头DP</td>
+			<td>3133</td>
+		</tr>
+		<tr>
+			<td>1739</td>
+		</tr>
+		<tr>
+			<td>2411</td>
+		</tr>
+		<tr>
+			<td>1763</td>
+		</tr>
+		<tr>
+			<td rowspan="4">数学</td>
+			<td rowspan="2">组合数学</td>
+			<td>2888</td>
+		</tr>
+		<tr>
+			<td>2154</td>
+		</tr>
+		<tr>
+			<td rowspan="2">博奕论</td>
+			<td>3317</td>
+		</tr>
+		<tr>
+			<td>1085</td>
+		</tr>
+		<tr>
+			<td rowspan="4">计算几何学</td>
+			<td rowspan="2">半平面求交</td>
+			<td>3384</td>
+		</tr>
+		<tr>
+			<td>2540</td>
+		</tr>
+		<tr>
+			<td>可视图的建立</td>
+			<td>2966</td>
+		</tr>
+		<tr>
+			<td>对踵点</td>
+			<td>2079</td>
+		</tr>
+		<tr>
+			<td rowspan="9">动态规划</td>
+			<td rowspan="9"></td>
+			<td>3109</td>
+		</tr>
+		<tr>
+			<td>1478</td>
+		</tr>
+		<tr>
+			<td>1462</td>
+		</tr>
+		<tr>
+			<td>2729</td>
+		</tr>
+		<tr>
+			<td>2048</td>
+		</tr>
+		<tr>
+			<td>3336</td>
+		</tr>
+		<tr>
+			<td>3315</td>
+		</tr>
+		<tr>
+			<td>2148</td>
+		</tr>
+		<tr>
+			<td>1263</td>
+		</tr>
+    </table>
