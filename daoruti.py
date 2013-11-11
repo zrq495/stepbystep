@@ -2,7 +2,7 @@
 #coding=utf-8
 import MySQLdb
 fp = open("/home/timeship/pojplan")
-conn = MySQLdb.connect('192.168.1.123','root','rootpass','stepbystep',charset ='utf8')
+conn = MySQLdb.connect('localhost','username','password','stepbystep',charset ='utf8')
 cur = conn.cursor()
 for line in fp.readlines():
     cun = line.split()
