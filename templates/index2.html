@@ -1,4 +1,4 @@
-$def with(user, problem, solution, table_width)
+$def with(user, problem, solution, table_width, cate_len)
 
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -69,9 +69,15 @@ $def with(user, problem, solution, table_width)
         $#<div class="container bs-docs-container">
             <div class="row">
 
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <table class="table table-bordered">
-                        <th colspan="3">题目列表</th>
+                        <tr>
+                            <th colspan="3">题目列表</th>
+                        </tr>
+                        <tr>
+                            <td>专项</td>
+                            <td>专题</td>
+                            <td>题目</td>
                         <tr>
                             <td rowspan="13">基本算法</td>
                             <td rowspan="2">枚举</td>
@@ -1020,12 +1026,30 @@ $def with(user, problem, solution, table_width)
                     </table>
                 </div>
 
+                <div class="col-md-1">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                        <th>ssss</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        $for len in cate_len:
+                            $for l in range(len):
+                                <tr>
+                                <td>aaaaa</td>
+                                </tr>
+                        </tbody>
+                    </table>
+                </div>
+
                 <div class="col-md-8" role="main">
                     <table class="table table-bordered user">
                         <thead>
                         <tr>
                         $for u in user:
-                            <th>$u.user_name</th>
+                            <th>$u.user_name
+                            <br><br>$u.class1<br></th>
                         </tr>
                         </thead>
                         <tbody>
