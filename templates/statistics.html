@@ -1,0 +1,90 @@
+$def with(count)
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="stepbystep">
+        <meta name="author" content="zrq495">
+        <title>StepByStep</title>
+        <link href="../static/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../static/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+        <style>
+            body { padding-top: 70px; }
+            th{
+                  text-align:center;
+            }
+            td{
+                  text-align:center;
+            }
+            $#td.ac{
+            $#    background-color:#e1ffb5;
+            $#}
+            $#td.wa{
+            $#    background-color:#ffdada;
+            $#}
+        </style>
+    </head>
+
+
+    <body>
+        <a class="sr-only" href="#content">Skip to main content</a>
+
+        <header class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/" class="navbar-brand">SDUTACM训练计划</a>
+            </div>
+            <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                <a href="/statistics">统计表</a>
+                </li>
+                <li>
+                <a href="/">b</a>
+                </li>
+            </ul>
+            </nav>
+        </div>
+        </header>
+
+        $#<div class="bs-header" id="content">
+        $#    <div class="container">
+        $#        <h1>标题</h1>
+        $#        <p>一些说明</p>
+        $#    </div>
+        $#</div>
+
+        <div class="container bs-docs-container">
+            <div class="row">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>姓名</th>
+                            <th>初级（92题）</th>
+                            <th>中级（103题）</th>
+                            <th>高级（83题）</th>
+                            <th>总计（278题）</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        $for cnt in count:
+                            <tr>
+                            $for c in cnt:
+                                <td>$c</td>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
+

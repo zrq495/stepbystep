@@ -3,7 +3,8 @@ create table user(
     user_name varchar(20),
     poj_name varchar(100) not null,
     grade int(11),
-    class1 varchar(20)
+    class1 varchar(20),
+    permission int(11) default 1
 )ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 create table problem(

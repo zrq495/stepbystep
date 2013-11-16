@@ -1,45 +1,29 @@
-$def with(user, problem, solution, table_width)
+$def with(user, problem, solution, table_width, cate_len)
 
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
         <meta charset="utf-8">
-        $#<meta http-equiv="X-UA-Compatible" content="IE=edge">
-        $#<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="stepbystep">
         <meta name="author" content="zrq495">
         <title>StepByStep</title>
-        <link href="../static/css/bootstrap.min.css" rel="stylesheet">
-        <link href="../static/css/docs.css" rel="stylesheet">
-        <link href="../static/css/github.css" rel="stylesheet">
-        <link rel="icon" type="image/png" href="../static/favicon.ico">
+        <link href="../static/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../static/dist/css/bootstrap-theme.min.css" rel="stylesheet">
         <style>
-            body{font-family:"ff-tisa-web-pro-1","ff-tisa-web-pro-2","Lucida Grande","Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","WenQuanYi Micro Hei",sans-serif;}
-            h1, .h1, h2, .h2, h3, .h3, h4, .h4, .lead {font-family:"ff-tisa-web-pro-1","ff-tisa-web-pro-2","Lucida Grande","Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;}
-            pre code { background: transparent; }
+            body { padding-top: 70px; }
             table.user{
                 width:$table_width;
-                $#border:1px solid #1A5CC8;
-                $#border-collapse:collapse;
             }
             th{
-            $#    font-size:1.1em;
-            $#    font-width:900;
                   text-align:center;
-            $#    padding-top:4px;
-            $#    padding-bottom:4px;
-            $#    background-color:#1A5CC8;
-            $#    color:#ffffff;
             }
             td{
                   text-align:center;
             }
             $#td.ac{
             $#    background-color:#e1ffb5;
-            $#    $#font-size:1em;
-            $#    $#font-width:900;
-            $#    $#border:1px solid #1A5CC8;
-            $#    $#padding:3px 7px 3px 7px;
             $#}
             $#td.wa{
             $#    background-color:#ffdada;
@@ -48,46 +32,52 @@ $def with(user, problem, solution, table_width)
     </head>
 
 
-$#    <body>
-$#        <a class="sr-only" href="#content">Skip to main content</a>
-$#
-$#        <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
-$#        <div class="container">
-$#            <div class="navbar-header">
-$#                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-$#                    <span class="sr-only">Toggle navigation</span>
-$#                    <span class="icon-bar"></span>
-$#                    <span class="icon-bar"></span>
-$#                    <span class="icon-bar"></span>
-$#                </button>
-$#                <a href="/" class="navbar-brand">SDUTACM训练计划</a>
-$#            </div>
-$#            <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-$#            $#<ul class="nav navbar-nav">
-$#            $#    <li>
-$#            $#    <a href="/">a</a>
-$#            $#    </li>
-$#            $#    <li class="active">
-$#            $#    <a href="/">b</a>
-$#            $#    </li>
-$#            $#</ul>
-$#            </nav>
-$#        </div>
-$#        </header>
-$#
-$#        $#<div class="bs-header" id="content">
-$#        $#    <div class="container">
-$#        $#        <h1>标题</h1>
-$#        $#        <p>一些说明</p>
-$#        $#    </div>
-$#        $#</div>
-$#
-$#        $#<div class="container bs-docs-container">
+    <body>
+        <a class="sr-only" href="#content">Skip to main content</a>
+
+        <header class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/" class="navbar-brand">SDUTACM训练计划</a>
+            </div>
+            <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+            <ul class="nav navbar-nav">
+                <li>
+                <a href="/statistics">统计表</a>
+                </li>
+                <li>
+                <a href="/">b</a>
+                </li>
+            </ul>
+            </nav>
+        </div>
+        </header>
+
+        $#<div class="bs-header" id="content">
+        $#    <div class="container">
+        $#        <h1>标题</h1>
+        $#        <p>一些说明</p>
+        $#    </div>
+        $#</div>
+
+        $#<div class="container bs-docs-container">
             <div class="row">
 
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <table class="table table-bordered">
-                        <th colspan="3">题目列表</th>
+                        <tr>
+                            <th colspan="3">题目列表</th>
+                        </tr>
+                        <tr>
+                            <td>专项</td>
+                            <td>专题</td>
+                            <td>题目</td>
                         <tr>
                             <td rowspan="13">基本算法</td>
                             <td rowspan="2">枚举</td>
@@ -1036,12 +1026,35 @@ $#        $#<div class="container bs-docs-container">
                     </table>
                 </div>
 
+                <div class="col-md-1">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                        <th>ssss</th>
+                        </tr>
+                        <tr>
+                        <th>ssss</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        $#$for len in cate_len:
+                        $#    $for l in range(len):
+                        $#        <tr>
+                        $#        <td>aaaaa</td>
+                        $#        </tr>
+                        $for pro in problem:
+                            <tr><td>$pro.deadline[2:]</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
                 <div class="col-md-8" role="main">
                     <table class="table table-bordered user">
                         <thead>
                         <tr>
                         $for u in user:
-                            <th>$u.user_name</th>
+                            <th>$u.user_name
+                            <br><br>$u.class1<br></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -1065,19 +1078,13 @@ $#        $#<div class="container bs-docs-container">
 
         <footer class="bs-footer" role="contentinfo">
             <div class="container">
-                <p class="text-center">&copy; 2013 <a href="http://www.zrq495.com">zrq495</a> - All Rights Reserved.</p>
+                <p class="text-center">&copy; 2013 <a href="http://www.zrq495.com" target="_blank">zrq495</a> <a href="http://blog.gentoox.org" target="_blank">timeship</a> - All Rights Reserved.</p>
             </div>
         </footer>
 
 
-
-
-
-        <script src="../../static/js/jquery-1.10.2.min.js"></script>
-        <script src="../../static/js/bootstrap.js"></script>
-        <script src="../../static/js/holder.js"></script>
-        <script src="../../static/js/highlight.js"></script>
-        <script src="../../static/js/application.js"></script>
+        <script src="../static/dist/js/jquery-1.10.2.min.js"></script>
+        <script src="../static/dist/js/bootstrap.js"></script>
     </body>
 </html>
 
