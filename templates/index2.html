@@ -1032,13 +1032,18 @@ $def with(user, problem, solution, table_width, cate_len)
                         <tr>
                         <th>ssss</th>
                         </tr>
+                        <tr>
+                        <th>ssss</th>
+                        </tr>
                         </thead>
                         <tbody>
-                        $for len in cate_len:
-                            $for l in range(len):
-                                <tr>
-                                <td>aaaaa</td>
-                                </tr>
+                        $#$for len in cate_len:
+                        $#    $for l in range(len):
+                        $#        <tr>
+                        $#        <td>aaaaa</td>
+                        $#        </tr>
+                        $for pro in problem:
+                            <tr><td>$pro.deadline[2:]</td></tr>
                         </tbody>
                     </table>
                 </div>

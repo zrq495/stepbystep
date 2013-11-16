@@ -9,8 +9,8 @@ cur = conn.cursor()
 for line in fp.readlines():
     cun = line.split()
     #print cun
-    #sql_content = "update user set class='%s' where user_name = '%s';"%(cun[3],cun[0]) 
-    sql_content="insert into user(user_id,user_name,poj_name,grade,class) values(null,'%s','%s',%d,'%s')"%(cun[0],cun[1],int(cun[2]), cun[3])
+    #sql_content = "update user set class1='%s' where user_name = '%s';"%(cun[3],cun[0]) 
+    sql_content="insert into user(user_id,user_name,poj_name,grade,class1) values(null,'%s','%s',%d,'%s')"%(cun[0],cun[1],int(cun[2]), cun[3])
     print sql_content
     cur.execute(sql_content)
     conn.commit()
