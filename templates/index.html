@@ -1,4 +1,5 @@
-$def with(user, problem, solution, table_width, cate_len)
+$def with(pro_list, user, problem, table_width, cate_len)
+$#$def with(user, problem, solution, table_width, cate_len)
 
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -1058,18 +1059,28 @@ $def with(user, problem, solution, table_width, cate_len)
                         </tr>
                         </thead>
                         <tbody>
-                        $for pro in problem:
-                            <tr>
-                            $for u in user:
-                                $ flag = 0
-                                $for solu in solution:
-                                    $if solu.pid == pro.pid and u.user_id == solu.user_id: 
-                                        <td class="success">$solu.actime</td>
-                                        $ flag = 1
-                                        $break
-                                $if flag == 0:
-                                    <td>&nbsp;</td>
-                            </tr>
+                        $#$for pro in problem:
+                        $#    <tr>
+                        $#    $for u in user:
+                        $#        $ flag = 0
+                        $#        $for solu in solution:
+                        $#            $if solu.pid == pro.pid and u.user_id == solu.user_id: 
+                        $#                <td class="success">$solu.actime</td>
+                        $#                $ flag = 1
+                        $#                $break
+                        $#        $if flag == 0:
+                        $#            <td>&nbsp;</td>
+                        $#    </tr>
+                        $#$for pro in pro_list:
+                        $#    <tr>
+                        $#    $for p in pro:
+                        $#        $if p != ' ':
+                        $#            <td class="success">$p</td>
+                        $#        $else:
+                        $#            <td>&nbsp;</td>
+                        $#    </tr>
+                        $for pro in pro_list:
+                            $:pro
                         </tbody>
                     </table>
                 </div>

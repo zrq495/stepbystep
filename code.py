@@ -4,6 +4,7 @@
 import web
 import os
 import hashlib
+import time
 
 web.config.debug = False
 
@@ -47,12 +48,54 @@ class index:
     def GET(self):
         user = db.query('select * from user where permission=1 order by grade desc, user_id desc')
         problem = db.query('select * from problem order by pid')
-        solution = db.query('select * from solution')
+        #solution = db.query('select * from solution order by pid')
+        solution = db.query('select solution.pid, solution.user_id, solution.actime from solution,user,problem where user.user_id = solution.user_id and problem.pid = solution.pid order by solution.pid, user.grade desc, user.user_id desc')
+        #solution = db.query('select solution.pid, solution.user_id, solution.actime from solution,user,problem where user.user_id = solution.user_id and problem.pid = solution.pid order by solution.pid desc, user.grade asc, user.user_id asc')
         user = list(user)
         problem = list(problem)
         solution = list(solution)
         table_width = str(len(user)*100) + 'px'
-        return render.index(user, problem, solution, table_width, cate_len)
+        starttime = time.clock()
+        pro_list = []
+        flag = 0
+        #for pro in problem:
+        #    p_list = []
+        #    for u in user:
+        #        #flag = 0
+        #        #for solu in solution:
+        #        #    if solu.pid == pro.pid and u.user_id == solu.user_id:
+        #        #        p_list.append(solu.actime)
+        #        #        del solution[0]
+        #        #        flag = 1
+        #        #        break
+        #        #if flag == 0:
+        #        #    p_list.append(' ')
+        #        if flag == 0 and solution[0].pid == pro.pid and u.user_id == solution[0].user_id:
+        #            p_list.append(solution[0].actime)
+        #            del solution[0]
+        #            if not solution:
+        #                flag = 1
+        #                continue
+        #            continue
+        #        p_list.append(' ')
+        #    pro_list.append(p_list)
+        for pro in problem:
+            p_str = '<tr>'
+            for u in user:
+                if flag == 0 and solution[0].pid == pro.pid and u.user_id == solution[0].user_id:
+                    p_str += '<td class="success">' + solution[0].actime + '</td>'
+                    del solution[0]
+                    if not solution:
+                        flag = 1
+                        continue
+                    continue
+                p_str += '<td>&nbsp;</td>'
+            p_str += '</tr>'
+            pro_list.append(p_str)
+        endtime = time.clock()
+        print endtime - starttime
+        #return render.index(user, problem, solution, table_width, cate_len)
+        return render.index(pro_list, user, problem, table_width, cate_len)
 
 class admin:
     def GET(self):
