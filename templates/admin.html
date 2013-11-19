@@ -1,0 +1,122 @@
+$def with(user, category, rank_len)
+$:render.header()
+
+        <div class="container bs-docs-container">
+            <div class="row">
+
+                <div class="col-md-3">
+                    <div class="bs-sidebar hidden-print" role="complementary">
+                        <ul class="nav bs-sidenav">
+                            <li><a href="#adminuser">用户管理</a></li>
+                            <li><a href="#admincategory">完成时间管理</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-9" role="main">
+                    <div class="bs-docs-section">
+                        <div class="page-header">
+                            <h1 id="adminuser">用户管理</h1>
+                        </div>
+                    <table class="table table-bordered table-hover tablesorter" id="adminusertable">
+                        <thead>
+                            <tr>
+                                <th>UserName</th>
+                                <th>POJName</th>
+                                <th>Grade</th>
+                                <th>Class</th>
+                                <th>Manage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            $for u in user:
+                                <tr>
+                                <td>$u.user_name</td>
+                                <td>$u.poj_name</td>
+                                <td>$u.grade</td>
+                                <td>$u.class1</td>
+                                $if u.permission == 1:
+                                    $ status = 'Disabled'
+                                $elif u.permission == 0:
+                                    $ status = 'Enable'
+                                <td><a href="#" data-toggle="modal" data-target="#edituser-$u.user_id">Edit</a> | <a href="/disabled/$u.user_id/$u.permission">$status</a></td>
+                                    <dir class="modal fade" id="edituser-$u.user_id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <form role="form" action="/edituser" method="POST">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <label>UserName</label>
+                                                            <input type="text" class="form-control" id="editusername-$u.user_id" name="editusername-$u.user_id" value="$u.user_name">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>POJName</label>
+                                                            <input type="text" class="form-control" id="edituserpojname-$u.user_id" name="edituserpojname-$u.user_id" value="$u.poj_name">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Grade</label>
+                                                            <input type="text" class="form-control" id="editusergrade-$u.user_id" name="editusergrade-$u.user_id" value="$u.grade">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Class</label>
+                                                            <input type="text" class="form-control" id="edituserclass-$u.user_id" name="edituserclass-$u.user_id" value="$u.class1">
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </dir>
+                                </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="bs-docs-section">
+                        <div class="page-header">
+                            <h1 id="admincategory">完成时间管理</h1>
+                        </div>
+                        <form role="form" action="/editdeadline" method="POST"> 
+                            <table class="table table-bordered" id="editdeadlinetable">
+                            $for cate in category:
+                                <tr>
+                                $if cate.cid <= rank_len[0]:
+                                    $if cate.cid == 1:
+                                        <td rowspan="$rank_len[0]">$cate.rank</td>
+                                        <td>$cate.cname</td>
+                                    $else:
+                                        <td>$cate.cname</td>
+                                $elif cate.cid <= rank_len[0] + rank_len[1]:
+                                    $if cate.cid == rank_len[0] + 1:
+                                        <td rowspan="$rank_len[1] + 1">$cate.rank</td>
+                                        <td>$cate.cname</td>
+                                    $else:
+                                        <td>$cate.cname</td>
+                                $elif cate.cid <= rank_len[0] + rank_len[1] + rank_len[2]:
+                                    $if cate.cid == rank_len[0] + rank_len[1] + 1:
+                                        <td rowspan="$rank_len[2]">$cate.rank</td>
+                                        <td>$cate.cname</td>
+                                    $else:
+                                        <td>$cate.cname</td>
+                                <td><input type="text" class="form-contrl" id="editdeadline-$cate.cid" name="editdeadline-$cate.cid" value="$cate.deadline"></td>
+                                </tr>
+                            </table>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+$:render.footer()

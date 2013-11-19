@@ -1,0 +1,21 @@
+$:render.header()
+
+<style>
+    body { padding-top: 70px; }
+</style>
+
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <form action="/login" method="POST" role="form">
+            <div class="form-group">
+                <input type="text" class="form-control" id="username" name="username" placeholder="UserName">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="passwd" name="passwd" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-default">Sign in</button>
+        </form>
+    </div>
+</div>
+
+$:render.footer()
