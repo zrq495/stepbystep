@@ -6,6 +6,7 @@ import os
 import hashlib
 import time
 import datetime
+import xlrd
 
 web.config.debug = False
 
@@ -19,6 +20,8 @@ urls =  (
     '/disabled/(.+)/(.+)', 'disabled',
     '/edituser', 'edituser',
     '/editdeadline', 'editdeadline',
+    '/adduser', 'adduser',
+    '/uploadfile', 'uploadfile',
 )
 
 app = web.application(urls, globals())
@@ -180,6 +183,69 @@ class editdeadline:
             raise web.seeother('/admin')
         else:
             raise web.seeother('/login')
+
+class adduser:
+    def GET(self):
+        raise web.seeother('/login')
+    def POST(self):
+        if logged():
+            usernumber = web.input().get('usernumber-999999')
+            items = web.input().items()
+            items = sorted(items, key=lambda x:(x[0].split('-')[1], x[0].split('-')[0]))
+            error = ''
+            inserterror = ''
+            for i in range(0, len(items)-1, 4):
+                if items[i][1] and items[i+1][1] and items[i+2][1] and items[i+3][1]:
+                    try:
+                        if len(db.query('select * from user where user_name="%s" and class1="%s"' %(items[i+2][1], items[i][1]))):
+                            error += items[i+2][1].encode('utf-8') + '<br>'
+                        else:
+                            db.query('insert into user(user_id, user_name, poj_name, grade, class1, permission) values(null, "%s", "%s", "%s", "%s", 1)' %(items[i+2][1], items[i+3][1], items[i+1][1], items[i][1]))
+                    except:
+                        inserterror += items[i+2][1].encode('utf-8') + '<br>'
+            content = '用户：<br>' + error
+            if error:
+                content += '已存在！<br>'
+            if inserterror:
+                content += '插入错误！<br>'
+            if error or inserterror:
+                return render.error(content, '/admin')
+            raise web.seeother('/admin')
+        else:
+            raise web.seeother('/login')
+
+class uploadfile:
+    def GET(self):
+        raise web.seeother('/login')
+    def POST(self):
+        if logged():
+            x = web.input(myfile={})
+            filedir = 'upload'
+            if 'myfile' in x:
+                filepath = x.myfile.filename.replace('\\', '/') 
+                filename = filepath.split('/')[-1]
+                if filename.split('.')[-1] != 'xls' and filename.split('.')[-1] != 'xlsx':
+                    return render.error('文件格式错误！', '/admin')
+                fout = open(filedir + '/' + filename, 'wb')
+                fout.write(x.myfile.file.read())
+                fout.close()
+                data = xlrd.open_workbook(filedir + '/' + filename)
+                table = data.sheet_by_index(0)
+                nrows = table.nrows
+                user = []
+                for i in range(nrows):
+                    u = []
+                    u.append(i)
+                    for v in table.row_values(i):
+                        if type(v) == float:
+                            v = int(v)
+                        u.append(v)
+                    #u.extend(table.row_values(i))
+                    user.append(u)
+                return render.confirm(user)
+            else:
+                return render.error('请选择需要上传的文件！', '/admin')
+        raise web.seeother('/login')
 
 class statistics:
     def GET(self):

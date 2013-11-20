@@ -1,0 +1,56 @@
+$def with(user)
+$:render.header()
+
+<style>
+    body { padding-top: 70px; }
+</style>
+
+        <div class="container bs-docs-container">
+            <div class="row">
+                <h4>请确认信息是否正确！</h4>
+                <form action="/adduser" method="POST" role="form">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>姓名</th>
+                                <th>POJ帐号</th>
+                                <th>年级</th>
+                                <th>班级</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        $for u in user:
+                            <tr>
+                            <td>
+                            <div class="form-group">
+                            <input type="text" class="form-control" id="addusername-$u[0]" name="addusername-$u[0]" value="$u[1]">
+                            </div>
+                            </td>
+                            <td>
+                            <div class="form-group">
+                            <input type="text" class="form-control" id="adduserpojname-$u[0]" name="adduserpojname-$u[0]" value="$u[2]">
+                            </div>
+                            </td>
+                            <td>
+                            <div class="form-group">
+                            <input type="text" class="form-control" id="addusergrade-$u[0]" name="addusergrade-$u[0]" value="$u[3]">
+                            </div>
+                            </td>
+                            <td>
+                            <div class="form-group">
+                            <input type="text" class="form-control" id="adduserclass-$u[0]" name="adduserclass-$u[0]" value="$u[4]">
+                            </div>
+                            </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <input type="hidden" name="usernumber-999999" value="$len(user)">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <a href="/admin" class="btn btn-default" role="button">Cancel</a>
+                </form>
+            </div>
+        </div>
+
+
+
+$:render.footer()

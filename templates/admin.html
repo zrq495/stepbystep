@@ -7,7 +7,13 @@ $:render.header()
                 <div class="col-md-3">
                     <div class="bs-sidebar hidden-print" role="complementary">
                         <ul class="nav bs-sidenav">
-                            <li><a href="#adminuser">用户管理</a></li>
+                            <li>
+                                <a href="#adminuser">用户管理</a>
+                                <ul class="nav">
+                                    <li><a href="#addsingleuser">添加单个用户</a></li>
+                                    <li><a href="#addmultipleuser">批量导入用户</a></li>
+                                </ul>
+                            </li>
                             <li><a href="#admincategory">完成时间管理</a></li>
                         </ul>
                     </div>
@@ -18,64 +24,95 @@ $:render.header()
                         <div class="page-header">
                             <h1 id="adminuser">用户管理</h1>
                         </div>
-                    <table class="table table-bordered table-hover tablesorter" id="adminusertable">
-                        <thead>
-                            <tr>
-                                <th>UserName</th>
-                                <th>POJName</th>
-                                <th>Grade</th>
-                                <th>Class</th>
-                                <th>Manage</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            $for u in user:
+                        <table class="table table-bordered table-hover tablesorter" id="adminusertable">
+                            <thead>
                                 <tr>
-                                <td>$u.user_name</td>
-                                <td>$u.poj_name</td>
-                                <td>$u.grade</td>
-                                <td>$u.class1</td>
-                                $if u.permission == 1:
-                                    $ status = 'Disabled'
-                                $elif u.permission == 0:
-                                    $ status = 'Enable'
-                                <td><a href="#" data-toggle="modal" data-target="#edituser-$u.user_id">Edit</a> | <a href="/disabled/$u.user_id/$u.permission">$status</a></td>
-                                    <dir class="modal fade" id="edituser-$u.user_id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <form role="form" action="/edituser" method="POST">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="form-group">
-                                                            <label>UserName</label>
-                                                            <input type="text" class="form-control" id="editusername-$u.user_id" name="editusername-$u.user_id" value="$u.user_name">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>POJName</label>
-                                                            <input type="text" class="form-control" id="edituserpojname-$u.user_id" name="edituserpojname-$u.user_id" value="$u.poj_name">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Grade</label>
-                                                            <input type="text" class="form-control" id="editusergrade-$u.user_id" name="editusergrade-$u.user_id" value="$u.grade">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Class</label>
-                                                            <input type="text" class="form-control" id="edituserclass-$u.user_id" name="edituserclass-$u.user_id" value="$u.class1">
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-primary">Save changes</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </dir>
+                                    <th>UserName</th>
+                                    <th>POJName</th>
+                                    <th>Grade</th>
+                                    <th>Class</th>
+                                    <th>Manage</th>
                                 </tr>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                $for u in user:
+                                    <tr>
+                                    <td>$u.user_name</td>
+                                    <td>$u.poj_name</td>
+                                    <td>$u.grade</td>
+                                    <td>$u.class1</td>
+                                    $if u.permission == 1:
+                                        $ status = 'Disabled'
+                                    $elif u.permission == 0:
+                                        $ status = 'Enable'
+                                    <td><a href="#" data-toggle="modal" data-target="#edituser-$u.user_id">Edit</a> | <a href="/disabled/$u.user_id/$u.permission">$status</a></td>
+                                        <dir class="modal fade" id="edituser-$u.user_id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <form role="form" action="/edituser" method="POST">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="form-group">
+                                                                <label>UserName</label>
+                                                                <input type="text" class="form-control" id="editusername-$u.user_id" name="editusername-$u.user_id" value="$u.user_name">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>POJName</label>
+                                                                <input type="text" class="form-control" id="edituserpojname-$u.user_id" name="edituserpojname-$u.user_id" value="$u.poj_name">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Grade</label>
+                                                                <input type="text" class="form-control" id="editusergrade-$u.user_id" name="editusergrade-$u.user_id" value="$u.grade">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Class</label>
+                                                                <input type="text" class="form-control" id="edituserclass-$u.user_id" name="edituserclass-$u.user_id" value="$u.class1">
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </dir>
+                                    </tr>
+                            </tbody>
+                        </table>
+                        <h3 id="addsingleuser">添加单个用户</h3>
+                        <form action="/adduser" method="POST" role="form">
+                            <div class="row">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="addsingleusername-0" name="addsingleusername-0" placeholder="UserName">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="addsingleuserpojname-0" name="addsingleuserpojname-0" placeholder="POJName">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="addsingleusergrade-0" name="addsingleusergrade-0" placeholder="Grade">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="addsingleuserclass-0" name="addsingleuserclass-0" placeholder="Class">
+                                </div>
+                                <input type="hidden" name="usernumber-999999" value="1">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-default">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                        <h3 id="addmultipleuser">批量导入用户</h3>
+                        <form action="/uploadfile" enctype="multipart/form-data" method="POST" role="form">
+                            <div class="form-group">
+                                <label>用户文件</label>
+                                <input type="file" id="myfile" name="myfile">
+                                <p class="help-block">请上传格式为xls、xlsx文件。表格的列依次是姓名、POJ帐号、年级、班级。无需表头。</p>
+                            </div>
+                            <button type="submit" class="btn btn-default">上传</button>
+                        </form>
+                    </div>
 
                     <div class="bs-docs-section">
                         <div class="page-header">
