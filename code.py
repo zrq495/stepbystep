@@ -88,10 +88,8 @@ class login:
     def POST(self):
         username = web.input().username
         passwd = web.input().passwd
-        print 'aaaabbbcccc'
         #try:
         ident = db.query('select * from user where user_name = "%s"' %username)[0]
-        print 'aaaa'
         if ident.poj_name == hashpasswd(passwd):
             session.login = 1
             #raise web.seeother('/admin')
@@ -99,7 +97,6 @@ class login:
             category = db.query('select problem.cid, category.rank, category.cname, problem.deadline from problem, category where problem.cid = category.cid group by problem.cid order by problem.cid')
             user = list(user)
             category = list(category)
-            print 'aaaabbb'
             return render.admin(user, category, rank_len)
         else:
             return render.error('用户名或密码错误！', '/login')
@@ -109,8 +106,6 @@ class login:
 
 class admin:
     def GET(self):
-        print 'bbb'
-        print session.login
         if logged():
             user = db.query('select * from user where permission != 2 order by grade desc, user_id desc')
             category = db.query('select problem.cid, category.rank, category.cname, problem.deadline from problem, category where problem.cid = category.cid group by problem.cid order by problem.cid')
