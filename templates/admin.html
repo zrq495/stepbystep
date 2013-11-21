@@ -140,7 +140,9 @@ $:render.header()
                                         <td>$cate.cname</td>
                                     $else:
                                         <td>$cate.cname</td>
-                                <td><input type="text" class="form-contrl" id="editdeadline-$cate.cid" name="editdeadline-$cate.cid" value="$cate.deadline"></td>
+                                <td>
+                                    <input type="text" class="date form_date form-control" data-date data-date-format="yyyy-mm-dd" id="editdeadline-$cate.cid" name="editdeadline-$cate.cid" value="$cate.deadline" readonly>
+                                </td>
                                 </tr>
                             </table>
                             <button type="submit" class="btn btn-default">Submit</button>

@@ -34,6 +34,13 @@ cate_len = [13, 20, 17, 14, 9, 12, 7, 7, 19, 17, 5, 14, 26, 15, 7, 24, 10, 15, 1
 rank = ['初级', '中级', '高级']
 rank_len = [7, 7, 8]
 
+def is_valid_date(str):
+    try:
+        time.strptime(str, "%Y-%m-%d")
+        return True
+    except:
+        return False
+
 def hashpasswd(passwd):
     pre = 'sA2lT7!54-'
     return hashlib.sha1(pre + passwd).hexdigest()
@@ -170,8 +177,7 @@ class editdeadline:
             for key in web.input().keys():
                 try:
                     value = web.input().get(key)
-                    da = value.split('-')
-                    if len(da) != 3 or len(da[0]) != 4 or len(da[1]) > 2 or len(da[2]) > 2 or int(da[1]) > 12 or int(da[2] > 31):
+                    if not is_valid_date(value):
                         return render.error('error !', '/admin')
                     if value:
                         l = key.split('-')[1]
