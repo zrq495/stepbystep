@@ -28,7 +28,8 @@ app = web.application(urls, globals())
 db = web.database(dbn='mysql', db='stepbystep', user='root', pw='rootpass')
 render = web.template.render('templates/', cache=False)
 web.template.Template.globals['render'] = render
-session = web.session.Session(app, web.session.DiskStore('sessions'), initializer={'login': 0})
+curdir = os.path.dirname(__file__)
+session = web.session.Session(app, web.session.DiskStore(os.path.join(curdir, 'sessions')), initializer={'login': 0})
 
 cate_len = [13, 20, 17, 14, 9, 12, 7, 7, 19, 17, 5, 14, 26, 15, 7, 24, 10, 15, 10, 4, 4, 9]
 rank = ['初级', '中级', '高级']
@@ -295,5 +296,7 @@ class logout:
         session.kill()
         raise web.seeother('/')
 
+#from web.httpserver import StaticMiddleware
+#application = app.wsgifunc(StaticMiddleware)
 if __name__ == '__main__':
     app.run()
