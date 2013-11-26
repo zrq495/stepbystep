@@ -15,8 +15,9 @@ urls =  (
     '/login', 'login',
     '/admin', 'admin',
     '/logout', 'logout',
-    '/statistics', 'statistics',
+    '/statistics/(.+)/week/(.+)', 'statistics_week',
     '/statistics/(.+)', 'statistics_year',
+    '/statistics', 'statistics',
     '/disabled/(.+)/(.+)', 'disabled',
     '/edituser', 'edituser',
     '/editdeadline', 'editdeadline',
@@ -41,6 +42,12 @@ def is_valid_date(str):
         return True
     except:
         return False
+
+def split_date(date):
+    y = int(date.split('-')[0])
+    m = int(date.split('-')[1])
+    d = int(date.split('-')[2])
+    return datetime.date(y, m, d)
 
 def hashpasswd(passwd):
     pre = 'sA2lT7!54-'
@@ -259,7 +266,7 @@ class statistics:
             for r in rank:
                 sc = db.query('select count(solution.pid) as cnt from solution, problem where solution.user_id="%s" and solution.pid = problem.pid and problem.cid in (select cid from category where rank="%s")' %(u.user_id, r))[0]
                 singlecount.append(int(sc.cnt))
-            singlecount.append(sum(singlecount[2:]))
+            singlecount.append(sum(singlecount[1:]))
             count.append(singlecount)
         return render.statistics(count)
 
@@ -289,6 +296,79 @@ class statistics_year:
                     cnt[int(d.actime.split('-')[1])] += 1
                 count.append(cnt)
             return render.statistics_year(count, year, start_year, this_year)
+
+class statistics_week:
+    def GET(self, year, half):
+        start_year = 2011
+        today = datetime.date.today()
+        this_year = today.year
+        if (year == 'year'):
+            year = this_year
+        else:
+            try:
+                year = int(year)
+                if year < start_year or year > this_year:
+                    return render.error('年份错误！', '/statistics/year/week/half')
+            except:
+                return render.error('年份错误！', '/statistics/year/week/half')
+        if (half == 'half'):
+            if today < datetime.date(this_year, 7, 31):
+                half = 1
+            else:
+                half = 2
+                this_half = 2
+        else:
+            try:
+                half = int(half)
+                if half != 1 and half != 2:
+                    return render.error('url error', '/statistics/year/week/half')
+            except:
+                return render.error('url error', '/statistics/year/week/half')
+
+        if today < datetime.date(this_year, 7, 31):
+            this_half = 1
+        else:
+            this_half = 2
+        try:
+            start_date = db.query('select start_date from startdate where start_date like "%s%%" and half=%d' %(year, half))[0]
+        except:
+            return render.error('查询错误！', '/statistics/year/week/half')
+        start_date = split_date(start_date.start_date) 
+        user = db.query('select * from user where permission=1 and grade>%d order by grade desc, user_id desc' %(this_year - 4))
+        user = list(user)
+        current_week = ((today - start_date).days + 1) / 7 + 1
+        all_week = []
+        t = start_date 
+        for i in range(current_week):
+            s = '%s' %t
+            e = '%s' %(t + datetime.timedelta(6))
+            t = t + datetime.timedelta(7)
+            all_week.append([s, e, '第%d周' %(i+1)])
+            if i >= 19:
+                break
+        try:
+            data = db.query('select * from solution s, user u \
+                            where u.user_id = s.user_id and u.permission=1 and u.grade>%d \
+                            and DATE_FORMAT(s.actime, "%%Y-%%m-%%d") >= DATE_FORMAT("%s", "%%Y-%%m-%%d") \
+                            and DATE_FORMAT(s.actime, "%%Y-%%m-%%d") <= DATE_FORMAT("%s", "%%Y-%%m-%%d") \
+                            order by DATE_FORMAT(s.actime, "%%Y-%%m-%%d"), u.grade desc, u.user_id desc' \
+                            %(this_year-4, start_date, today))
+            data = list(data)
+        except:
+            return render.error('error !', '/statistics/year/week/half')
+        all_week_user = []
+        flag = 0
+        for week in all_week:
+            week_user = {u.user_name : [0, u.grade, u.user_id, u.class1] for u in user}
+            if not flag:
+                for d in data:
+                    if split_date(d.actime) >= split_date(week[0]) and split_date(d.actime) <= split_date(week[1]):
+                        week_user[d.user_name][0] += 1
+            all_week_user.append(sorted(week_user.items(), key=lambda x:(x[1][1], x[1][2]), reverse=1))
+        all_week.reverse()
+        all_week_user.reverse()
+        table_width = str(len(user)*100) + 'px'
+        return render.statistics_week(user, all_week, all_week_user, table_width, year, half, start_year, this_year, this_half)
 
 class logout:
     def GET(self):

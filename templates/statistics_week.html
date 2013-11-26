@@ -1,0 +1,80 @@
+$def with(user, all_week, all_week_user, table_width, year, half, start_year, this_year, this_half)
+<!DOCTYPE html>
+$:render.header()
+
+<style>
+    body { padding-top: 70px; }
+    table.user {
+        width:$table_width;
+    } 
+</style>
+
+        <div class="container bs-docs-container">
+            <div class="row">
+
+                <div align="center">
+                    <ul class="pagination">
+                        $ flag = half - 1 
+                        $if year == start_year and half == 1:
+                            <li class="disabled"><span>&laquo;</span></li>
+                        $elif year != start_year and flag == 0:
+                            <li><a href="/statistics/$int(year-1)/week/2">&laquo;</a></li>
+                            $ flag = 1
+                        $elif flag == 1:
+                            <li><a href="/statistics/$int(year)/week/1">&laquo;</a></li>
+                            $ flag = 0
+                        $ z = 0
+                        $if this_half == 1:
+                            $ z = 1
+                        $for i in range((int(this_year)-start_year+1)*2-z):
+                            $ y = start_year + i / 2
+                            $ x = i % 2 + 1
+                            $if x == 2:
+                                $ h = '下'
+                            $elif x == 1:
+                                $ h = '上'
+                            $if y == year and half == x:
+                                <li class="active"><span>$y$h<span class="sr-only">(current)</span></span></a></li>
+                            $else:
+                                <li><a href="/statistics/$y/week/$x">$y$h</a></li>
+                        $ flag = half - 1
+                        $if year == this_year and half == this_half:
+                            <li class="disabled"><span>&raquo;</span></li>
+                        $elif flag == 1:
+                            <li><a href="/statistics/$int(year+1)/week/1">&raquo;</a></li>
+                            $ flag = 0
+                        $elif flag == 0:
+                            <li><a href="/statistics/$int(year)/week/2">&raquo;</a></li>
+                            $ flag = 1
+                    </ul>
+                </div>
+
+                <table class="table table-bordered table-hover table-striped user">
+                    <thead>
+                        <tr>
+                            <th>$year年
+                            $if half == 1:
+                                上半年
+                            $else:
+                                下半年
+                            </th>
+                            $for u in user:
+                                <th>$u.user_name<br>$u.class1</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        $ i = 0
+                        $for aw in all_week:
+                            <tr>
+                            <td>$aw[2] $aw[0]~$aw[1]</td>
+                            $for awu in all_week_user[i]:
+                                <td>$awu[1][0]</td>
+                            </tr>
+                            $ i += 1
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+$:render.footer()

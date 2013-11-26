@@ -4,7 +4,7 @@ import urllib
 import re
 import MySQLdb
 import time
-conn = MySQLdb.connect('localhost','username','password','stepbystep',charset='utf8')
+conn = MySQLdb.connect('localhost','root','rootpass','stepbystep',charset='utf8')
 cur =conn.cursor()
 def gethtml(url):
     content = urllib.urlopen(url)
@@ -41,7 +41,7 @@ def gethtmlfun(uid):
                     conn.commit()
                     time.sleep(0.5)
 #user_id=raw_input("请输入用户id:")
-sql_content5="select user_id from user;"
+sql_content5="select user_id from user where permission=1;"
 cur.execute(sql_content5)
 user_id_list=cur.fetchall()
-[gethtmlfun(i) for i in user_id_list[0]]
+[gethtmlfun(i[0]) for i in user_id_list]

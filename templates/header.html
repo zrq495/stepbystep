@@ -6,13 +6,13 @@
         <meta name="description" content="stepbystep">
         <meta name="author" content="zrq495">
         <title>StepByStep</title>
-        <link href="../static/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="../static/dist/css/bootstrap-theme.min.css" rel="stylesheet">
-        <link href="../static/dist/css/docs.css" rel="stylesheet">
-        <link href="../static/jquery/themes/blue/style.css" rel="stylesheet">
-        <link href="../static/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-<script type="text/javascript">
-function addEvent(obj,type,fn){
+        <link href="../../../static/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../static/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="../../../static/dist/css/docs.css" rel="stylesheet">
+        <link href="../../../static/jquery/themes/blue/style.css" rel="stylesheet">
+        <link href="../../../static/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+        <script type="text/javascript">
+            function addEvent(obj,type,fn){
                 if(obj.attachEvent){
                     obj.attachEvent('on'+type,function(){fn.call(obj);})
                 }
@@ -23,12 +23,31 @@ function addEvent(obj,type,fn){
 addEvent(window,'scroll',function(){
         var div1=document.getElementById("divSuspended")
         div1.style.left = document.body.scrollLeft;
-            });
+        });
 addEvent(window,'scroll',function(){
         var div2=document.getElementById("test")
         div2.style.top = document.body.scrollTop;
-            });
+        });
     </script>
+    <script type="text/javascript">
+        var userAgent=navigator.userAgent.toLowerCase(), s, o = {};   
+var browser={
+version:(userAgent.match(/(?:firefox|opera|safari|chrome|msie)[\/: ]([\d.]+)/))[1],
+        safari:/version.+safari/.test(userAgent),
+        chrome:/chrome/.test(userAgent),
+        firefox:/firefox/.test(userAgent),
+        ie:/msie/.test(userAgent),
+        opera: /opera/.test(userAgent ) 
+} /* 获得浏览器的名称及版本信息 */
+
+if (browser.chrome)
+{
+}
+else
+{
+    alert("请使用谷歌浏览器！谢谢！");
+}
+</script>
         <style>
             $#body { padding-top: 70px; }
             th{
@@ -76,7 +95,10 @@ addEvent(window,'scroll',function(){
                 <a href="/statistics">统计表</a>
                 </li>
                 <li>
-                <a href="/statistics/year">年份统计</a>
+                <a href="/statistics/year">年统计</a>
+                </li>
+                <li>
+                <a href="/statistics/year/week/half">周统计</a>
                 </li>
             </ul>
             </nav>
