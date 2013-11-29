@@ -84,79 +84,79 @@ CREATE TABLE `problem` (
 
 LOCK TABLES `problem` WRITE;
 /*!40000 ALTER TABLE `problem` DISABLE KEYS */;
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (1,1753,'2011-11-11',1);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (2,2965,'2011-11-11',1);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (3,1328,'2011-11-11',1);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (4,2109,'2011-11-11',1);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (5,2586,'2011-11-11',1);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (6,2524,'2011-11-11',1);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (7,2506,'2011-11-11',1);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (8,3295,'2011-11-11',1);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (9,1068,'2011-11-11',1);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (10,2632,'2011-11-11',1);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (11,1573,'2011-11-11',1);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (12,2993,'2011-11-11',1);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (13,2996,'2011-11-11',1);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (14,3278,'2013-12-22',2);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (15,2049,'2013-12-22',2);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (16,3083,'2013-12-22',2);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (17,1860,'2013-12-22',2);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (18,3259,'2013-12-22',2);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (19,1062,'2013-12-22',2);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (20,2253,'2013-12-22',2);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (21,1125,'2013-12-22',2);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (22,2240,'2013-12-22',2);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (23,1789,'2013-12-22',2);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (24,2485,'2013-12-22',2);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (25,1258,'2013-12-22',2);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (26,3026,'2013-12-22',2);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (27,1094,'2013-12-22',2);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (28,3267,'2013-12-22',2);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (29,3687,'2013-12-22',2);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (30,3041,'2013-12-22',2);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (31,3020,'2013-12-22',2);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (32,1459,'2013-12-22',2);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (33,3436,'2013-12-22',2);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (34,1035,'2013-12-31',3);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (35,3080,'2013-12-31',3);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (36,1936,'2013-12-31',3);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (37,2388,'2013-12-31',3);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (38,2299,'2013-12-31',3);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (39,1611,'2013-12-31',3);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (40,3349,'2013-12-31',3);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (41,3274,'2013-12-31',3);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (42,2151,'2013-12-31',3);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (43,1840,'2013-12-31',3);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (44,2002,'2013-12-31',3);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (45,2503,'2013-12-31',3);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (46,3253,'2013-12-31',3);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (47,2442,'2013-12-31',3);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (48,1442,'2013-12-31',3);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (49,2513,'2013-12-31',3);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (50,2418,'2013-12-31',3);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (51,2488,'2013-08-01',4);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (52,3083,'2013-08-01',4);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (53,3009,'2013-08-01',4);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (54,1321,'2013-08-01',4);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (55,2251,'2013-08-01',4);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (56,3278,'2013-08-01',4);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (57,1426,'2013-08-01',4);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (58,3126,'2013-08-01',4);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (59,3087,'2013-08-01',4);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (60,3414,'2013-08-01',4);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (61,2531,'2013-08-01',4);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (62,1416,'2013-08-01',4);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (63,2676,'2013-08-01',4);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (64,1129,'2013-08-01',4);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (65,1837,'2014-12-01',5);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (66,1276,'2014-12-01',5);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (67,3267,'2014-12-01',5);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (68,1836,'2014-12-01',5);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (69,1260,'2014-12-01',5);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (70,2533,'2014-12-01',5);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (71,3176,'2014-12-01',5);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (72,1080,'2014-12-01',5);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (73,1159,'2014-12-01',5);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (1,1753,'2013-12-01',1);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (2,2965,'2013-12-01',1);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (3,1328,'2013-12-01',1);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (4,2109,'2013-12-01',1);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (5,2586,'2013-12-01',1);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (6,2524,'2013-12-01',1);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (7,2506,'2013-12-01',1);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (8,3295,'2013-12-01',1);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (9,1068,'2013-12-01',1);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (10,2632,'2013-12-01',1);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (11,1573,'2013-12-01',1);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (12,2993,'2013-12-01',1);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (13,2996,'2013-12-01',1);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (14,3278,'2013-12-01',2);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (15,2049,'2013-12-01',2);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (16,3083,'2013-12-01',2);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (17,1860,'2013-12-01',2);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (18,3259,'2013-12-01',2);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (19,1062,'2013-12-01',2);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (20,2253,'2013-12-01',2);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (21,1125,'2013-12-01',2);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (22,2240,'2013-12-01',2);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (23,1789,'2013-12-01',2);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (24,2485,'2013-12-01',2);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (25,1258,'2013-12-01',2);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (26,3026,'2013-12-01',2);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (27,1094,'2013-12-01',2);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (28,3267,'2013-12-01',2);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (29,3687,'2013-12-01',2);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (30,3041,'2013-12-01',2);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (31,3020,'2013-12-01',2);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (32,1459,'2013-12-01',2);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (33,3436,'2013-12-01',2);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (34,1035,'2013-12-01',3);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (35,3080,'2013-12-01',3);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (36,1936,'2013-12-01',3);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (37,2388,'2013-12-01',3);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (38,2299,'2013-12-01',3);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (39,1611,'2013-12-01',3);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (40,3349,'2013-12-01',3);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (41,3274,'2013-12-01',3);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (42,2151,'2013-12-01',3);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (43,1840,'2013-12-01',3);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (44,2002,'2013-12-01',3);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (45,2503,'2013-12-01',3);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (46,3253,'2013-12-01',3);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (47,2442,'2013-12-01',3);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (48,1442,'2013-12-01',3);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (49,2513,'2013-12-01',3);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (50,2418,'2013-12-01',3);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (51,2488,'2013-12-01',4);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (52,3083,'2013-12-01',4);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (53,3009,'2013-12-01',4);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (54,1321,'2013-12-01',4);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (55,2251,'2013-12-01',4);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (56,3278,'2013-12-01',4);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (57,1426,'2013-12-01',4);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (58,3126,'2013-12-01',4);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (59,3087,'2013-12-01',4);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (60,3414,'2013-12-01',4);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (61,2531,'2013-12-01',4);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (62,1416,'2013-12-01',4);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (63,2676,'2013-12-01',4);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (64,1129,'2013-12-01',4);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (65,1837,'2013-12-01',5);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (66,1276,'2013-12-01',5);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (67,3267,'2013-12-01',5);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (68,1836,'2013-12-01',5);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (69,1260,'2013-12-01',5);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (70,2533,'2013-12-01',5);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (71,3176,'2013-12-01',5);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (72,1080,'2013-12-01',5);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (73,1159,'2013-12-01',5);
 INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (74,3252,'2013-12-01',6);
 INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (75,1850,'2013-12-01',6);
 INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (76,1019,'2013-12-01',6);
@@ -219,11 +219,11 @@ INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (132,1703,'20
 INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (133,2492,'2013-12-01',10);
 INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (134,1961,'2013-12-01',10);
 INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (135,2406,'2013-12-01',10);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (136,1699,'2013-10-11',11);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (137,3411,'2013-10-11',11);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (138,1724,'2013-10-11',11);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (139,3373,'2013-10-11',11);
-INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (140,1691,'2013-10-11',11);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (136,1699,'2013-12-01',11);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (137,3411,'2013-12-01',11);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (138,1724,'2013-12-01',11);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (139,3373,'2013-12-01',11);
+INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (140,1691,'2013-12-01',11);
 INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (141,1191,'2013-12-01',12);
 INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (142,1054,'2013-12-01',12);
 INSERT INTO `problem` (`pid`, `poj_pid`, `deadline`, `cid`) VALUES (143,3280,'2013-12-01',12);
@@ -2272,6 +2272,36 @@ INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (18,260,'2012-07-20')
 UNLOCK TABLES;
 
 --
+-- Table structure for table `startdate`
+--
+
+DROP TABLE IF EXISTS `startdate`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `startdate` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `start_date` varchar(20) DEFAULT NULL,
+  `half` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `startdate`
+--
+
+LOCK TABLES `startdate` WRITE;
+/*!40000 ALTER TABLE `startdate` DISABLE KEYS */;
+INSERT INTO `startdate` (`id`, `start_date`, `half`) VALUES (1,'2013-09-02',2);
+INSERT INTO `startdate` (`id`, `start_date`, `half`) VALUES (2,'2013-03-04',1);
+INSERT INTO `startdate` (`id`, `start_date`, `half`) VALUES (3,'2012-08-27',2);
+INSERT INTO `startdate` (`id`, `start_date`, `half`) VALUES (4,'2012-03-05',1);
+INSERT INTO `startdate` (`id`, `start_date`, `half`) VALUES (5,'2011-09-05',2);
+INSERT INTO `startdate` (`id`, `start_date`, `half`) VALUES (6,'2011-03-07',1);
+/*!40000 ALTER TABLE `startdate` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `user`
 --
 
@@ -2314,8 +2344,6 @@ INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `perm
 INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`) VALUES (17,'郭宝星','gbaoxing',2010,'计科1001',1);
 INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`) VALUES (18,'张金虎','1011051119',2010,'计科1001',1);
 INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`) VALUES (0,'root','d251cb9565547ab1c86dfa6cbdb82397d8983977',2011,'计科1102',2);
-INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`) VALUES (19,'afs','afaf',2011,'fssfsfsfs',1);
-INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`) VALUES (20,'张汝全','zhangruquan',2011,'计科1102',1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -2328,4 +2356,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-11-19 19:44:32
+-- Dump completed on 2013-11-26 23:04:33

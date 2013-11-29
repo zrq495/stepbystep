@@ -1,4 +1,5 @@
 $def with(user, category, rank_len)
+<!DOCTYPE html>
 $:render.header()
 
         <div class="container bs-docs-container">
@@ -82,6 +83,10 @@ $:render.header()
                                     </tr>
                             </tbody>
                         </table>
+                        <div id="addsingleuser">
+                            <br>
+                            <br>
+                        </div>
                         <h3 id="addsingleuser">添加单个用户</h3>
                         <form action="/adduser" method="POST" role="form">
                             <div class="row">
@@ -103,7 +108,11 @@ $:render.header()
                                 </div>
                             </div>
                         </form>
-                        <h3 id="addmultipleuser">批量导入用户</h3>
+                        <div id="addmultipleuser">
+                            <br>
+                            <br>
+                        </div>
+                        <h3>批量导入用户</h3>
                         <form action="/uploadfile" enctype="multipart/form-data" method="POST" role="form">
                             <div class="form-group">
                                 <label>用户文件</label>

@@ -29,3 +29,9 @@ create table category(
     rank varchar(20),
     cname varchar(100)
 )ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+create table startdate(
+    id int(11) primary key auto_increment,
+    start_date varchar(20),
+    half int(11)
+)ENGINE=MyISAM DEFAULT CHARSET=utf8;

@@ -6,13 +6,19 @@ $:render.header()
     table.user{
         width:$table_width;
     }
+    td {
+        font-size:14px;
+    }
+    th {
+        font-size:14px;
+    }
 </style>
 
         $#<div class="container bs-docs-container">
             <div class="row">
 
-                <div class="col-md-3">
-                    <table class="table table-bordered">
+                <div id="divSuspended" class="col-md-3 fix_div1" style="position:relative;left:0px;height:100%">
+                    <table class="table table-bordered" style="background-color:#FFFFFF">
                         <tr>
                             <th colspan="3">题目列表</th>
                         </tr>
@@ -970,15 +976,15 @@ $:render.header()
 
                 <div class="col-md-1">
                     <table class="table table-bordered">
-                        <thead>
+                        $#<thead>
                         <tr>
                         <th>完成时间</th>
                         </tr>
                         <tr>
                         <th>yymmdd</th>
                         </tr>
-                        </thead>
-                        <tbody>
+                        $#</thead>
+                        $#<tbody>
                         $#$for len in cate_len:
                         $#    $for l in range(len):
                         $#        <tr>
@@ -986,18 +992,27 @@ $:render.header()
                         $#        </tr>
                         $for pro in problem:
                             <tr><td>$pro.deadline[2:]</td></tr>
-                        </tbody>
+                        $#</tbody>
                     </table>
                 </div>
-
-                <div class="col-md-8" role="main">
-                    <table class="table table-bordered user">
-                        <thead>
+                <div id="test" class="col-md-8 fix_div2" style="height:74px" role="main">
+                    <table class="table table-bordered user" style="background-color:#FFFFFF;margin:0px;0px;0px;0px">
+                        $#<thead>
                         <tr>
                         $for u in user:
                             <th>$u.user_name<br>$u.class1<br>$u.count题</th>
                         </tr>
-                        </thead>
+                        $#</thead>
+                    </table>
+                </div>
+                <div class="col-md-8" role="main">
+                    <table class="table table-bordered user">
+                    $#    <thead>
+                    $#    <tr>
+                    $#    $for u in user:
+                    $#        <th>$u.user_name<br>$u.class1<br>$u.count题</th>
+                    $#    </tr>
+                    $#    </thead>
                         <tbody>
                         $#$for pro in problem:
                         $#    <tr>
