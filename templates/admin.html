@@ -1,4 +1,4 @@
-$def with(user, category, rank_len)
+$def with(user, category, rank_len, start_date)
 <!DOCTYPE html>
 $:render.header()
 
@@ -16,6 +16,7 @@ $:render.header()
                                 </ul>
                             </li>
                             <li><a href="#admincategory">完成时间管理</a></li>
+                            <li><a href="#editstartdate">开学时间管理</a></li>
                         </ul>
                     </div>
                 </div>
@@ -158,6 +159,19 @@ $:render.header()
                         </form>
 
                     </div>
+
+                    <div class="bs-docs-section">
+                        <div class="page-header">
+                            <h1 id="editstartdate">开学时间管理</h1>
+                        </div>
+                        <form role="form" action="editstartdate" method="POST">
+                            <table class="table table-bordered" id="editstartdatetable">
+                            $for sd in start_date:
+                                <tr>
+                                <td>$sd.start_date</td>
+                                </tr>
+                            </table>
+                        </form>
 
                 </div>
             </div>

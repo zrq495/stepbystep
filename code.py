@@ -117,9 +117,11 @@ class admin:
         if logged():
             user = db.query('select * from user where permission != 2 order by grade desc, user_id desc')
             category = db.query('select problem.cid, category.rank, category.cname, problem.deadline from problem, category where problem.cid = category.cid group by problem.cid order by problem.cid')
+            start_date = db.query('select * from startdate order by DATE_FORMAT(start_date, "%%Y-%%m-%%d") desc')
             user = list(user)
             category = list(category)
-            return render.admin(user, category, rank_len)
+            start_date = list(start_date)
+            return render.admin(user, category, rank_len, start_date)
         else:
             raise web.seeother('/login')
     def POST(self):
