@@ -7,6 +7,7 @@ import hashlib
 import time
 import datetime
 import xlrd
+from autocache import memorize
 
 web.config.debug = False
 
@@ -52,6 +53,7 @@ def logged():
         return True
 
 class index:
+    @memorize(3600)
     def GET(self):
         starttime = time.clock()
         user = db.query(' select u.*, count(s.user_id) as "count" from solution s, user u where s.user_id = u.user_id and u.permission = 1 group by s.user_id order by u.grade desc, u.user_id desc')
@@ -249,6 +251,7 @@ class uploadfile:
         raise web.seeother('/login')
 
 class statistics:
+    @memorize(3600)
     def GET(self):
         user = db.query('select * from user where permission=1 order by grade desc, user_id desc')
         count = []
@@ -263,6 +266,7 @@ class statistics:
         return render.statistics(count)
 
 class statistics_year:
+    @memorize(3600)
     def GET(self, year='year'):
         today = datetime.date.today()
         start_year = 2011
