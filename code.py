@@ -302,6 +302,7 @@ class statistics_year:
             return render.statistics_year(count, year, start_year, this_year)
 
 class statistics_week:
+    @memorize(3600)
     def GET(self, year, half):
         start_year = 2011
         today = datetime.date.today()
