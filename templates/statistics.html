@@ -21,7 +21,8 @@ $:render.header()
                     <tbody>
                         $for cnt in count:
                             <tr>
-                            $for c in cnt:
+                            <td><a href="http://poj.org/userstatus?user_id=$cnt[-1]" target="_blank">$cnt[0]</a></td>
+                            $for c in cnt[1:-1]:
                                 <td>$c</td>
                             </tr>
                     </tbody>

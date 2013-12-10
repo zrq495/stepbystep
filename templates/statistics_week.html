@@ -59,7 +59,7 @@ $:render.header()
                                 下半年
                             </th>
                             $for u in user:
-                                <th>$u.user_name<br>$u.class1</th>
+                                <th><a href="http://poj.org/userstatus?user_id=$u.poj_name" target="_blank">$u.user_name<br>$u.class1</a></th>
                         </tr>
                     </thead>
                     <tbody>

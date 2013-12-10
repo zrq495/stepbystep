@@ -64,6 +64,9 @@ class index:
     @memorize(3600)
     def GET(self):
         starttime = time.clock()
+        today = datetime.date.today()
+        week_start = today - datetime.timedelta(today.weekday())
+        week_end = week_start + datetime.timedelta(6)
         user = db.query(' select u.*, count(s.user_id) as "count" from solution s, user u where s.user_id = u.user_id and u.permission = 1 group by s.user_id order by u.grade desc, u.user_id desc')
         problem = db.query('select * from problem order by pid')
         solution = db.query('select solution.pid, solution.user_id, solution.actime from solution,user,problem where user.user_id = solution.user_id and problem.pid = solution.pid and user.permission=1 order by solution.pid, user.grade desc, user.user_id desc')
@@ -77,7 +80,10 @@ class index:
             p_str = '<tr>'
             for u in user:
                 if flag == 0 and solution[0].pid == pro.pid and u.user_id == solution[0].user_id:
-                    p_str += '<td class="success">' + solution[0].actime + '</td>'
+                    if split_date(solution[0].actime) >= week_start and split_date(solution[0].actime) <= week_end:
+                        p_str += '<td class="danger">' + solution[0].actime + '</td>'
+                    else:
+                        p_str += '<td class="success">' + solution[0].actime + '</td>'
                     del solution[0]
                     if not solution:
                         flag = 1
@@ -272,6 +278,7 @@ class statistics:
                 sc = db.query('select count(solution.pid) as cnt from solution, problem where solution.user_id="%s" and solution.pid = problem.pid and problem.cid in (select cid from category where rank="%s")' %(u.user_id, r))[0]
                 singlecount.append(int(sc.cnt))
             singlecount.append(sum(singlecount[1:]))
+            singlecount.append(u.poj_name)
             count.append(singlecount)
         return render.statistics(count)
 
@@ -293,11 +300,12 @@ class statistics_year:
             user = db.query('select * from user where permission=1 order by grade desc, user_id desc')
             count = []
             for u in user:
-                cnt = [0] * 14
+                cnt = [0] * 15
                 data = db.query('select * from solution, user where solution.user_id = user.user_id  and user.user_id = "%s" and solution.actime like "''%s''%%"' %(u.user_id, year))
                 data = list(data)
                 cnt[0] = u.user_name + ' ' + u.class1
                 cnt[13] = len(data)
+                cnt[14] = u.poj_name
                 for d in data:
                     cnt[int(d.actime.split('-')[1])] += 1
                 count.append(cnt)
@@ -343,7 +351,8 @@ class statistics_week:
         start_date = split_date(start_date.start_date) 
         user = db.query('select * from user where permission=1 and grade>%d order by grade desc, user_id desc' %(this_year - 4))
         user = list(user)
-        current_week = ((today - start_date).days + 1) / 7 + 1
+        current_week = ((today - start_date).days) / 7 + 1
+        print current_week
         all_week = []
         t = start_date 
         for i in range(current_week):
