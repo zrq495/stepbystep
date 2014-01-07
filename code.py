@@ -105,15 +105,17 @@ class login:
         username = web.input().username
         passwd = web.input().passwd
         #try:
-        ident = db.query('select * from user where user_name = "%s"' %username)[0]
-        if ident.poj_name == hashpasswd(passwd):
+        ident = db.query('select * from user where user_name = "%s" and permission = 2' %username)[0]
+        if ident.passwd == hashpasswd(passwd):
             session.login = 1
             #raise web.seeother('/admin')
             user = db.query('select * from user where permission != 2 order by grade desc, user_id desc')
             category = db.query('select problem.cid, category.rank, category.cname, problem.deadline from problem, category where problem.cid = category.cid group by problem.cid order by problem.cid')
+            start_date = db.query('select * from startdate order by DATE_FORMAT(start_date, "%%Y-%%m-%%d") desc')
             user = list(user)
             category = list(category)
-            return render.admin(user, category, rank_len)
+            start_date = list(start_date)
+            return render.admin(user, category, rank_len, start_date)
         else:
             return render.error('用户名或密码错误！', '/login')
      #exept:
@@ -278,8 +280,12 @@ class statistics:
                 sc = db.query('select count(solution.pid) as cnt from solution, problem where solution.user_id="%s" and solution.pid = problem.pid and problem.cid in (select cid from category where rank="%s")' %(u.user_id, r))[0]
                 singlecount.append(int(sc.cnt))
             singlecount.append(sum(singlecount[1:]))
+            singlecount.append(u.poj_solved)
+            singlecount.append(u.poj_rank)
             singlecount.append(u.poj_name)
             count.append(singlecount)
+        count.sort(key=lambda x:(int(x[1])*1+int(x[2])*3+int(x[3])*10+(int(x[5])-int(x[4]))*2, x[5]), reverse=True)
+        #初级×1 中级×3 高级×10 其他×2
         return render.statistics(count)
 
 class statistics_year:
@@ -293,11 +299,14 @@ class statistics_year:
                 year = this_year
             if int(year) >= start_year and int(year) <= this_year:
                 year = int(year)
+            else:
+                error = '年份错误！'
+                return render.error(error, '/statistics/year')
         except:
             error = '年份错误！'
             return render.error(error, '/statistics/year')
         else:
-            user = db.query('select * from user where permission=1 order by grade desc, user_id desc')
+            user = db.query('select * from user where permission=1 and grade>=%d and grade<=%d order by grade desc, user_id desc' %(year - 4, year))
             count = []
             for u in user:
                 cnt = [0] * 15
@@ -312,63 +321,34 @@ class statistics_year:
             return render.statistics_year(count, year, start_year, this_year)
 
 class statistics_week:
-    @memorize(3600)
-    def GET(self, year, half):
-        start_year = 2011
-        today = datetime.date.today()
-        this_year = today.year
-        if (year == 'year'):
-            year = this_year
-        else:
-            try:
-                year = int(year)
-                if year < start_year or year > this_year:
-                    return render.error('年份错误！', '/statistics/year/week/half')
-            except:
-                return render.error('年份错误！', '/statistics/year/week/half')
-        if (half == 'half'):
-            if today < datetime.date(this_year, 7, 31):
-                half = 1
-            else:
-                half = 2
-                this_half = 2
-        else:
-            try:
-                half = int(half)
-                if half != 1 and half != 2:
-                    return render.error('url error', '/statistics/year/week/half')
-            except:
-                return render.error('url error', '/statistics/year/week/half')
-
-        if today < datetime.date(this_year, 7, 31):
-            this_half = 1
-        else:
-            this_half = 2
-        try:
-            start_date = db.query('select start_date from startdate where start_date like "%s%%" and half=%d' %(year, half))[0]
-        except:
-            return render.error('查询错误！', '/statistics/year/week/half')
-        start_date = split_date(start_date.start_date) 
-        user = db.query('select * from user where permission=1 and grade>%d order by grade desc, user_id desc' %(this_year - 4))
+    '''
+    这个类已经无法直视了。。。
+    '''
+    def func(self, start_date, end_date, this_year, this_half, year, half, today, start_year):
+        user = db.query('select * from user where permission=1 and grade>=%d and grade<=%d order by grade desc, user_id desc' %(year - 4, year))
         user = list(user)
-        current_week = ((today - start_date).days) / 7 + 1
-        print current_week
+        current_week = ((end_date - start_date).days) / 7 + 1
         all_week = []
         t = start_date 
-        for i in range(current_week):
+        i = 0
+        #for i in range(current_week):
+        #    s = '%s' %t
+        #    e = '%s' %(t + datetime.timedelta(6))
+        #    t = t + datetime.timedelta(7)
+        #    all_week.append([s, e, '第%d周' %(i+1)])
+        while t <= end_date:
             s = '%s' %t
             e = '%s' %(t + datetime.timedelta(6))
             t = t + datetime.timedelta(7)
             all_week.append([s, e, '第%d周' %(i+1)])
-            if i >= 19:
-                break
+            i += 1
         try:
             data = db.query('select * from solution s, user u \
-                            where u.user_id = s.user_id and u.permission=1 and u.grade>%d \
+                            where u.user_id = s.user_id and u.permission=1 and u.grade>%d and u.grade<%d\
                             and DATE_FORMAT(s.actime, "%%Y-%%m-%%d") >= DATE_FORMAT("%s", "%%Y-%%m-%%d") \
                             and DATE_FORMAT(s.actime, "%%Y-%%m-%%d") <= DATE_FORMAT("%s", "%%Y-%%m-%%d") \
                             order by DATE_FORMAT(s.actime, "%%Y-%%m-%%d"), u.grade desc, u.user_id desc' \
-                            %(this_year-4, start_date, today))
+                            %(year-4, year, start_date, today))
             data = list(data)
         except:
             return render.error('error !', '/statistics/year/week/half')
@@ -384,7 +364,136 @@ class statistics_week:
         all_week.reverse()
         all_week_user.reverse()
         table_width = str(len(user)*100) + 'px'
+        #return render.statistics_week(user, all_week, all_week_user, table_width, year, half, start_year, this_year, this_half)
+        return (user, all_week, all_week_user, table_width, year, half, start_year, this_year, this_half)
+    @memorize(3600)
+    def GET(self, year, half):
+        start_year = 2011
+        today = datetime.date.today()
+        this_year = today.year
+        flag_year = 0
+        if year == 'year' and half == 'half':
+            year = this_year
+            if today > datetime.date(this_year, 2, 5) and today < datetime.date(this_year, 8, 5):
+                half = 1
+            else:
+                if today >= datetime.date(this_year, 1, 1):
+                    year -= 1
+                half = 2
+                this_half = 2
+            flag_year = 1
+        else:
+            try:
+                year = int(year)
+                if year < start_year or year > this_year:
+                    return render.error('年份错误！', '/statistics/year/week/half')
+                half = int(half)
+                if half != 1 and half != 2 and half != 3 and half != 4:
+                    return render.error('url error', '/statistics/year/week/half')
+            except:
+                return render.error('url error', '/statistics/year/week/half')
+        try:
+            if today > datetime.date(this_year, 2, 5) and today < datetime.date(this_year, 8, 5):
+                this_half = 1
+            else:
+                this_half = 2
+            this_start_date = db.query('select start_date from startdate where start_date like "%s%%" order by DATE_FORMAT(start_date, "%%Y-%%m-%%d")' %(this_year))
+            last_start_date = db.query('select start_date from startdate where start_date like "%s%%" order by DATE_FORMAT(start_date, "%%Y-%%m-%%d")' %(this_year-1))
+            this_start_date_1 = split_date(this_start_date[0].start_date) 
+            last_start_date_2 = split_date(last_start_date[1].start_date)
+            this_end_date_1 = this_start_date_1 + datetime.timedelta(139)
+            last_end_date_2 = last_start_date_2 + datetime.timedelta(139)
+            print today, last_end_date_2, this_start_date_1
+            if today < this_start_date_1 and today > last_end_date_2:
+                this_half = 3
+            elif today >= this_start_date_1 and today <= this_end_date_1:
+                this_half = 1
+            else:
+                this_half = 2
+            if len(this_start_date) == 2:
+                this_start_date_2 = split_date(this_start_date[1].start_date) 
+                this_end_date_2 = this_start_date_2 + datetime.timedelta(139)
+                if today >= this_start_date_2 and today <= this_end_date_2:
+                    this_half = 2
+                elif today > this_end_date_1 and today < this_start_date_2:
+                    this_half = 4
+            ttt = [2, 4, 1, 3]
+            if year == this_year and ttt[half] > ttt[this_half]:
+                return render.error('url error!', '/statistics/year/week/half')
+        except:
+            return render.error('查询错误2！', '/statistics/year/week/half')
+        try:
+            ty = year
+            th = half
+            if half == 3:
+                th = 2
+                ty -= 1
+            elif half == 4:
+                th = 1
+            start_date = db.query('select start_date from startdate where start_date like "%s%%" and half=%d' %(ty, th))[0]
+            start_date = split_date(start_date.start_date) 
+            end_date = start_date + datetime.timedelta(139)
+        except:
+            return render.error('查询错误！', '/statistics/year/week/half')
+        if flag_year or end_date > today:
+            end_date = today
+        vocation_start_date = start_date + datetime.timedelta(140)
+        try:
+            if vocation_start_date < today+datetime.timedelta(1000):
+                if start_date.year == (vocation_start_date).year:
+                    t = 2
+                else:
+                    t = 1
+                next_start_date = db.query('select start_date from startdate where start_date like "%s%%" and half=%d' %(vocation_start_date.year, t))[0]
+                next_start_date = split_date(next_start_date.start_date)
+                vocation_end_date = next_start_date -datetime.timedelta(1)
+        except:
+            return render.error('查询错误1！', '/statistics/year/week/half')
+        if half == 1 or half == 2:
+            user, all_week, all_week_user, table_width, year, half, start_year, this_year, this_half = self.func(start_date, end_date, this_year, this_half, year, half, today, start_year)
+        elif half == 3 or half == 4:
+            user, all_week, all_week_user, table_width, year, half, start_year, this_year, this_half = self.func(vocation_start_date, vocation_end_date, this_year, this_half, year, half, today, start_year)
         return render.statistics_week(user, all_week, all_week_user, table_width, year, half, start_year, this_year, this_half)
+        #user = db.query('select * from user where permission=1 and grade>%d order by grade desc, user_id desc' %(this_year - 4))
+        #user = list(user)
+        #current_week = ((end_date - start_date).days) / 7 + 1
+        #all_week = []
+        #t = start_date 
+        #i = 0
+        ##for i in range(current_week):
+        ##    s = '%s' %t
+        ##    e = '%s' %(t + datetime.timedelta(6))
+        ##    t = t + datetime.timedelta(7)
+        ##    all_week.append([s, e, '第%d周' %(i+1)])
+        #while t <= end_date:
+        #    s = '%s' %t
+        #    e = '%s' %(t + datetime.timedelta(6))
+        #    t = t + datetime.timedelta(7)
+        #    all_week.append([s, e, '第%d周' %(i+1)])
+        #    i += 1
+        #try:
+        #    data = db.query('select * from solution s, user u \
+        #                    where u.user_id = s.user_id and u.permission=1 and u.grade>%d \
+        #                    and DATE_FORMAT(s.actime, "%%Y-%%m-%%d") >= DATE_FORMAT("%s", "%%Y-%%m-%%d") \
+        #                    and DATE_FORMAT(s.actime, "%%Y-%%m-%%d") <= DATE_FORMAT("%s", "%%Y-%%m-%%d") \
+        #                    order by DATE_FORMAT(s.actime, "%%Y-%%m-%%d"), u.grade desc, u.user_id desc' \
+        #                    %(this_year-4, start_date, today))
+        #    data = list(data)
+        #except:
+        #    return render.error('error !', '/statistics/year/week/half')
+        #all_week_user = []
+        #flag = 0
+        #for week in all_week:
+        #    week_user = {u.user_name : [0, u.grade, u.user_id, u.class1] for u in user}
+        #    if not flag:
+        #        for d in data:
+        #            if split_date(d.actime) >= split_date(week[0]) and split_date(d.actime) <= split_date(week[1]):
+        #                week_user[d.user_name][0] += 1
+        #    all_week_user.append(sorted(week_user.items(), key=lambda x:(x[1][1], x[1][2]), reverse=1))
+        #all_week.reverse()
+        #all_week_user.reverse()
+        #table_width = str(len(user)*100) + 'px'
+        #return render.statistics_week(user, all_week, all_week_user, table_width, year, half, start_year, this_year, this_half)
 
 class logout:
     def GET(self):
