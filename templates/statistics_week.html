@@ -1,4 +1,4 @@
-$def with(user, all_week, all_week_user, table_width, year, half, start_year, this_year, this_half)
+$def with(user, all_week, all_week_user, table_width, year, half, start_year, today_and_half)
 <!DOCTYPE html>
 $:render.header()
 
@@ -13,81 +13,46 @@ $:render.header()
             <div class="row">
 
                 <div align="center">
-                    <ul class="pagination">
-                        $ flag = half - 1 
-                        $if year == start_year and half == 3:
-                            <li class="disabled"><span>&laquo;</span></li>
-                        $elif flag == 0:
-                            <li><a href="/statistics/$int(year)/week/3">&laquo;</a></li>
-                        $elif flag == 1:
-                            <li><a href="/statistics/$int(year)/week/4">&laquo;</a></li>
-                        $elif flag == 2:
-                            <li><a href="/statistics/$int(year-1)/week/2">&laquo;</a></li>
-                        $elif flag == 3:
-                            <li><a href="/statistics/$int(year)/week/1">&laquo;</a></li>
-                        $ z = 0
-                        $if this_half == 1:
-                            $ z = 2
-                        $elif this_half == 2:
-                            $if this_year == year:
-                                $ z = 0
-                            $else:
-                                $ z = 4
-                        $elif this_half == 3:
-                            $ z = 3
-                        $elif this_half == 4:
-                            $ z = 1
-                        $ num = (int(this_year)-start_year+1)*4-z
-                        $ l = []
-                        $for i in range(num):
-                            $if i % 4 == 0:
-                                $l.append((i/4)*4+2)
-                            $elif i % 4 == 1:
-                                $l.append((i/4)*4+0)
-                            $elif i % 4 == 2:
-                                $l.append((i/4)*4+3)
-                            $elif i % 4 == 3:
-                                $l.append((i/4)*4+1)
-                        $for i in l:
-                            $ y = start_year + i / 4
-                            $ x = i % 4 + 1
-                            $if x == 2:
-                                $ h = '下'
-                            $elif x == 1:
-                                $ h = '上'
-                            $elif x == 3:
-                                $ h = '寒'
-                            $elif x == 4:
-                                $ h = '暑'
-                            $if y == year and half == x:
-                                <li class="active"><span>$y$h<span class="sr-only">(current)</span></span></a></li>
-                            $else:
-                                <li><a href="/statistics/$y/week/$x">$y$h</a></li>
-                        $ flag = half - 1
-                        $if (year == this_year or year == this_year-1) and half == this_half:
-                            <li class="disabled"><span>&raquo;</span></li>
-                        $elif flag == 0:
-                            <li><a href="/statistics/$int(year)/week/4">&raquo;</a></li>
-                        $elif flag == 1:
-                            <li><a href="/statistics/$int(year+1)/week/3">&raquo;</a></li>
-                        $elif flag == 2:
-                            <li><a href="/statistics/$int(year)/week/1">&raquo;</a></li>
-                        $elif flag == 3:
-                            <li><a href="/statistics/$int(year)/week/2">&raquo;</a></li>
-                    </ul>
+                <form class="form-inline" role="form" action="/statistics_week" method="POST">
+                    <div class="form-group">
+                        <select class="form-control" name="select_year" id="select_year">
+                            $ y = start_year
+                            $while y <= today_and_half["start_date"].year:
+                                $if year == y:
+                                    <option value="$y" selected="selected">$y</option>
+                                $else:
+                                    <option value="$y">$y</option>
+                                $ y += 1
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" name="select_half" id="select_half">
+                            $ hh = ['寒假', '上半年', '暑假', '下半年']
+                            $for i in range(1, 5):
+                                $if half == i:
+                                    <option value="$i" selected="selected">$hh[i-1]</option>
+                                $else:
+                                    <option value="$i">$hh[i-1]</option>
+                        </select>
+                    </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </div>
+                    </div>
+                </form>
                 </div>
+                <br>
 
                 <table class="table table-bordered table-hover table-striped user">
                     <thead>
                         <tr>
                             <th>$year年
-                            $if half == 1:
+                            $if half == 2:
                                 上半年
-                            $elif half == 2:
-                                下半年
-                            $elif half == 3:
-                                寒假
                             $elif half == 4:
+                                下半年
+                            $elif half == 1:
+                                寒假
+                            $elif half == 3:
                                 暑假
                             </th>
                             $for u in user:
@@ -107,6 +72,7 @@ $:render.header()
                 </table>
             </div>
         </div>
+
 
 
 $:render.footer()
