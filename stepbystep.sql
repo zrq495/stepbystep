@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.29, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.34, for debian-linux-gnu (i686)
 --
 -- Host: localhost    Database: stepbystep
 -- ------------------------------------------------------
--- Server version	5.5.29-0ubuntu0.12.04.2
+-- Server version	5.5.34-0ubuntu0.12.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -2900,15 +2900,15 @@ CREATE TABLE `startdate` (
 
 LOCK TABLES `startdate` WRITE;
 /*!40000 ALTER TABLE `startdate` DISABLE KEYS */;
-INSERT INTO `startdate` (`id`, `start_date`, `half`) VALUES (1,'2013-09-02',2);
-INSERT INTO `startdate` (`id`, `start_date`, `half`) VALUES (2,'2013-03-04',1);
-INSERT INTO `startdate` (`id`, `start_date`, `half`) VALUES (3,'2012-08-27',2);
-INSERT INTO `startdate` (`id`, `start_date`, `half`) VALUES (4,'2012-03-05',1);
-INSERT INTO `startdate` (`id`, `start_date`, `half`) VALUES (5,'2011-09-05',2);
-INSERT INTO `startdate` (`id`, `start_date`, `half`) VALUES (6,'2011-03-07',1);
-INSERT INTO `startdate` (`id`, `start_date`, `half`) VALUES (7,'2014-03-03',1);
-INSERT INTO `startdate` (`id`, `start_date`, `half`) VALUES (8,'2010-09-06',2);
-INSERT INTO `startdate` (`id`, `start_date`, `half`) VALUES (9,'2014-09-01',2);
+INSERT INTO `startdate` (`id`, `start_date`, `half`) VALUES (1,'2013-09-02',4);
+INSERT INTO `startdate` (`id`, `start_date`, `half`) VALUES (2,'2013-03-04',2);
+INSERT INTO `startdate` (`id`, `start_date`, `half`) VALUES (3,'2012-08-27',4);
+INSERT INTO `startdate` (`id`, `start_date`, `half`) VALUES (4,'2012-03-05',2);
+INSERT INTO `startdate` (`id`, `start_date`, `half`) VALUES (5,'2011-09-05',4);
+INSERT INTO `startdate` (`id`, `start_date`, `half`) VALUES (6,'2011-03-07',2);
+INSERT INTO `startdate` (`id`, `start_date`, `half`) VALUES (7,'2014-03-03',2);
+INSERT INTO `startdate` (`id`, `start_date`, `half`) VALUES (8,'2010-09-06',4);
+INSERT INTO `startdate` (`id`, `start_date`, `half`) VALUES (9,'2014-09-01',4);
 /*!40000 ALTER TABLE `startdate` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2974,4 +2974,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-02-10  8:14:52
+-- Dump completed on 2014-02-10 18:13:12
