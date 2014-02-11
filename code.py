@@ -7,32 +7,22 @@ import hashlib
 import time
 import datetime
 import xlrd
+import logging
 from autocache import memorize
-
-web.config.debug = False
-
-urls =  (
-    '/', 'index',
-    '/login', 'login',
-    '/admin', 'admin',
-    '/logout', 'logout',
-    '/statistics/(.+)/week/(.+)', 'statistics_week',
-    '/statistics_week', 'statistics_week',
-    '/statistics/(.+)', 'statistics_year',
-    '/statistics', 'statistics',
-    '/disabled/(.+)/(.+)', 'disabled',
-    '/edituser', 'edituser',
-    '/editdeadline', 'editdeadline',
-    '/adduser', 'adduser',
-    '/uploadfile', 'uploadfile',
-)
+from config import settings
+from config.url import urls
 
 app = web.application(urls, globals())
-db = web.database(dbn='mysql', db='stepbystep', user='root', pw='rootpass')
-render = web.template.render('templates/', cache=False)
-web.template.Template.globals['render'] = render
+
+db = settings.db
+render = settings.render
+
+#session
 curdir = os.path.dirname(__file__)
 session = web.session.Session(app, web.session.DiskStore(os.path.join(curdir, 'sessions')), initializer={'login': 0})
+
+#日志
+logging.basicConfig(filename = os.path.join(os.getcwd(), 'log.txt'), level = logging.INFO, format = '%(asctime)s - %(levelname)s: %(message)s')
 
 cate_len = [13, 20, 17, 14, 9, 12, 7, 7, 19, 17, 5, 14, 26, 15, 7, 24, 10, 15, 10, 4, 4, 9]   #每个分类的题数
 rank = ['初级', '中级', '高级']   
@@ -45,7 +35,8 @@ def is_valid_date(str):
     try:
         time.strptime(str, "%Y-%m-%d")
         return True
-    except:
+    except Exception, e:
+        logging.error(e)
         return False
 
 def split_date(date):
@@ -123,23 +114,27 @@ class login:
     def POST(self):
         username = web.input().username
         passwd = web.input().passwd
-        #try:
-        ident = db.query('select * from user where user_name = "%s" and permission = 2' %username)[0]
-        if ident.passwd == hashpasswd(passwd):
-            session.login = 1
-            #raise web.seeother('/admin')
-            user = db.query('select * from user where permission != 2 order by grade desc, user_id desc')
-            category = db.query('select problem.cid, category.rank, category.cname, problem.deadline from problem, category where problem.cid = category.cid group by problem.cid order by problem.cid')
-            start_date = db.query('select * from startdate order by DATE_FORMAT(start_date, "%%Y-%%m-%%d") desc')
-            user = list(user)
-            category = list(category)
-            start_date = list(start_date)
-            return render.admin(user, category, rank_len, start_date)
-        else:
-            return render.error('用户名或密码错误！', '/login')
-     #exept:
-        session.login = 0
-        return render.error('error !', '/login')
+        try:
+            ident = db.query('select * from user where user_name = "%s" and permission = 2' %username)[0]
+            if ident.passwd == hashpasswd(passwd):
+                session.login = 1
+                #raise web.seeother('/admin')
+                user = db.query('select * from user where permission != 2 order by grade desc, user_id desc')
+                category = db.query('select problem.cid, category.rank, category.cname, problem.deadline from problem, category where problem.cid = category.cid group by problem.cid order by problem.cid')
+                start_date = db.query('select * from startdate order by DATE_FORMAT(start_date, "%%Y-%%m-%%d") desc')
+                user = list(user)
+                category = list(category)
+                start_date = list(start_date)
+                logging.info('登录成功：' + username.encode('utf8') + ':' + passwd.encode('utf8'))
+                return render.admin(user, category, rank_len, start_date)
+            else:
+                logging.info('登录失败：' + username.encode('utf8') + ':' + passwd.encode('utf8'))
+                return render.error('用户名或密码错误！', '/login')
+        except Exception, e:
+            logging.info('登录失败：' + username.encode('utf8') + ':' + passwd.encode('utf8'))
+            logging.error(e)
+            session.login = 0
+            return render.error('error !', '/login')
 
 class admin:
     '''
@@ -173,7 +168,8 @@ class disabled:
                 db.query('update user set permission=0 where user_id = "%s" and permission=1' %user_id)
             else:
                 raise 'error'
-        except:
+        except Exception, e:
+            logging.error(e)
             return render.error('disabled or enable error !', '/admin')
         raise web.seeother('/admin')
 
@@ -206,7 +202,8 @@ class edituser:
                             db.query('update user set class1="%s" where user_id="%s"' %(value.encode('utf-8'), l))
                         else:
                             return render.error('input error !', '/admin')
-                    except:
+                    except Exception, e:
+                        logging.error(e)
                         return render.error('update user error !', '/admin')
             raise web.seeother('/admin')
         else:
@@ -230,7 +227,8 @@ class editdeadline:
                         db.query('update problem set deadline="%s" where cid = "%s"' %(value.encode('utf-8'), l))
                     else:
                         return render.error('error !', '/admin')
-                except:
+                except Exception, e:
+                    logging.error(e)
                     return render.error('update deadline error !', '/admin')
             raise web.seeother('/admin')
         else:
@@ -256,7 +254,8 @@ class adduser:
                             error += items[i+2][1].encode('utf-8') + '<br>'
                         else:
                             db.query('insert into user(user_id, user_name, poj_name, grade, class1, permission) values(null, "%s", "%s", "%s", "%s", 1)' %(items[i+2][1], items[i+3][1], items[i+1][1], items[i][1]))
-                    except:
+                    except Exception, e:
+                        logging.error(e)
                         inserterror += items[i+2][1].encode('utf-8') + '<br>'
             content = '用户：<br>' + error
             if error:
@@ -282,6 +281,7 @@ class uploadfile:
             if 'myfile' in x:
                 filepath = x.myfile.filename.replace('\\', '/') 
                 filename = filepath.split('/')[-1]
+                logging.info('文件上传：' + filename)
                 if filename.split('.')[-1] != 'xls' and filename.split('.')[-1] != 'xlsx':
                     return render.error('文件格式错误！', '/admin')
                 fout = open(filedir + '/' + filename, 'wb')
@@ -345,7 +345,8 @@ class statistics_year:
             else:
                 error = '年份错误！'
                 return render.error(error, '/statistics/year')
-        except:
+        except Exception, e:
+            logging.error(e)
             error = '年份错误！'
             return render.error(error, '/statistics/year')
         else:
@@ -374,7 +375,7 @@ class statistics_week:
             all_start_date = db.query('select start_date, half from startdate order by DATE_FORMAT(start_date, "%%Y-%%m-%%d")')             #查询所有开始时间，不包括寒暑假
             all_start_date = list(all_start_date)
         except Exception, e:
-            print e
+            logging.error(e)
             return render.error('查询错误！', '/statistics/year/week/half')
         t = []
         for i in all_start_date:      #生成所有开始时间
@@ -406,7 +407,7 @@ class statistics_week:
                 if half != 1 and half != 2 and half != 3 and half != 4:
                     return render.error('url error', '/statistics/year/week/half')
             except Exception, e:
-                print e
+                logging.error(e)
                 return render.error('url error', '/statistics/year/week/half')
         flag = 0
         for i, item in enumerate(all_start_date):    #查找开始和结束时间
@@ -424,7 +425,7 @@ class statistics_week:
             user = db.query('select * from user where permission=1 and grade>%d and grade<%d order by grade desc, user_id desc' %(year-4, year))
             user = list(user)
         except Exception, e:
-            print e
+            logging.error(e)
             return render.error('查询错误！', '/statistics/year/week/half')
         all_week = []
         t = start_date
@@ -444,7 +445,7 @@ class statistics_week:
                             %(year-4, year, start_date, end_date))
             data = list(data)
         except Exception, e:
-            print e
+            logging.error(e)
             return render.error('查询错误！', '/statistics/year/week/half')
         all_week_user = []
         flag = 0

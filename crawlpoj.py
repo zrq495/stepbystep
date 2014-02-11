@@ -64,6 +64,7 @@ def crawl_solved(user):
         conn.commit()
 
 def checkuser(user):
+    '''四年之内的是1, 之外的是 今年-用户年级-1'''
     t = (today.year - user[3]) / 4
     if t < 1:
         t = 1
@@ -74,6 +75,9 @@ def checkuser(user):
     return 0
 
 def checkproblem(pro, t):
+    '''
+    初、中、高分别乘1、2、3
+    '''
     if pro[-1] > 14:
         t *= 3
     elif pro[-1] > 7:

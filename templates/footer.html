@@ -1,17 +1,17 @@
 
         <footer class="bs-footer" role="contentinfo">
             <div class="container">
-                <p class="text-center">Design by <a href="http://www.zrq495.com" target="_blank">zrq495</a> and <a href="http://blog.gentoox.org" target="_blank">timeship</a>.<br>&copy; 2013 <a href="mailto:zrq495@gmail.com">SDUT ACM Team</a>. All Rights Reserved.</p>
+                <p class="text-center">Design by <a href="http://www.zrq495.com" target="_blank">zrq495</a> and <a href="http://blog.gentoox.org" target="_blank">timeship</a>.<br>&copy; 2013-$config.today.year <a href="mailto:$config.email">SDUT ACM Team</a>. All Rights Reserved.</p>
             </div>
         </footer>
 
+        <script src="$config.static/dist/js/jquery.min.js"></script>
+        <script src="$config.static/dist/js/bootstrap.js"></script>
+        <script src="$config.static/dist/js/application.js"></script>
+        <script src="$config.static/jquery/jquery.tablesorter.min.js"></script>
+        <script src="$config.static/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="$config.static/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 
-        <script src="../../../static/dist/js/jquery.min.js"></script>
-        <script src="../../../static/dist/js/bootstrap.js"></script>
-        <script src="../../../static/dist/js/application.js"></script>
-        <script src="../../../static/jquery/jquery.tablesorter.min.js"></script>
-        <script src="../../../static/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-        <script src="../../../static/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
         <script type="text/javascript">
 		    $$(document).ready(function(){
                     $#$$("#staticsticstable").tablesorter( {sortList: [[5,1], [4,1], [3,1], [2,1], [1,1]], headers: { 0: {sorter: false} }} );     
@@ -32,6 +32,17 @@
 		        forceParse: 0
         });
         </script> 
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-37261791-3', 'sdut.edu.cn');
+  ga('send', 'pageview');
+
+</script>
 
     </body>
 </html>
