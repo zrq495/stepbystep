@@ -1,4 +1,4 @@
-$def with(pro_list, user, table_width, problem, cate_len)
+$def with(user, table_width, problem, cate_len, week_start, week_end)
 $:render.header()
 
 <style>
@@ -976,70 +976,91 @@ $:render.header()
 
                 <div class="col-md-1">
                     <table class="table table-bordered">
-                        $#<thead>
                         <tr>
                         <th>完成时间</th>
                         </tr>
                         <tr>
                         <th>yymmdd</th>
                         </tr>
-                        $#</thead>
-                        $#<tbody>
-                        $#$for len in cate_len:
-                        $#    $for l in range(len):
-                        $#        <tr>
-                        $#        <td>aaaaa</td>
-                        $#        </tr>
                         $for pro in problem:
                             <tr><td>$pro.deadline[2:]</td></tr>
-                        $#</tbody>
                     </table>
                 </div>
                 <div id="test" class="col-md-8 fix_div2" style="height:74px" role="main">
                     <table class="table table-bordered user" style="background-color:#FFFFFF;margin:0px;0px;0px;0px">
-                        $#<thead>
                         <tr>
                         $for u in user:
                             <th>$u.user_name<br>$u.class1<br>$u.count题</th>
                         </tr>
-                        $#</thead>
                     </table>
                 </div>
                 <div class="col-md-8" role="main">
-                    <table class="table table-bordered user">
-                    $#    <thead>
-                    $#    <tr>
-                    $#    $for u in user:
-                    $#        <th>$u.user_name<br>$u.class1<br>$u.count题</th>
-                    $#    </tr>
-                    $#    </thead>
-                        <tbody>
-                        $#$for pro in problem:
-                        $#    <tr>
-                        $#    $for u in user:
-                        $#        $ flag = 0
-                        $#        $for solu in solution:
-                        $#            $if solu.pid == pro.pid and u.user_id == solu.user_id: 
-                        $#                <td class="success">$solu.actime</td>
-                        $#                $ flag = 1
-                        $#                $break
-                        $#        $if flag == 0:
-                        $#            <td>&nbsp;</td>
-                        $#    </tr>
-                        $#$for pro in pro_list:
-                        $#    <tr>
-                        $#    $for p in pro:
-                        $#        $if p != ' ':
-                        $#            <td class="success">$p</td>
-                        $#        $else:
-                        $#            <td>&nbsp;</td>
-                        $#    </tr>
-                        $for pro in pro_list:
-                            $:pro
+                    <table class="table table-bordered user"> 
+                        <tbody id="table_solution">
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+
+<script>
+    function load()
+    {
+        var xmlhttp;
+        if (window.XMLHttpRequest)
+        {// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp=new XMLHttpRequest();
+        }
+        else
+        {// code for IE6, IE5
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange=function()
+        {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+                var s = new Date("$week_start");
+                var e = new Date("$week_end");
+                var jsonText = document.getElementById("table_solution");
+                var data = JSON.parse(xmlhttp.responseText);
+                for (var i = 0; i < data.length; i++)
+                {
+                    var item = data[i];
+                    var tr = document.createElement("tr");
+                    tr.setAttribute("id", i);
+                    jsonText.appendChild(tr);
+                    for (x in item)
+                    {
+                        for (y in item[x])
+                        {
+                            var td = document.createElement("td");
+                            var tr_json = document.getElementById(i);
+                            if (item[x][y])
+                            {
+                                var t = new Date(Date.parse(item[x][y].replace(/-/g, "/")));
+                                if (t>=s && t<=e)
+                                    td.setAttribute("class", "danger");
+                                else
+                                    td.setAttribute("class", "success");
+                                td.innerHTML = item[x][y];
+                            }
+                            else
+                            {
+                                td.innerHTML = "&nbsp;"
+                            }
+                            tr_json.appendChild(td);
+                        }
+                    }
+                }
+            }
+        }
+        xmlhttp.open("POST","/",true);
+        xmlhttp.send();
+    }
+    window.onload=function()
+    {
+        load();
+    }
+</script>
 
 $:render.footer()

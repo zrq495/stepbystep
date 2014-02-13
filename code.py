@@ -8,6 +8,7 @@ import time
 import datetime
 import xlrd
 import logging
+import json
 from autocache import memorize
 from config import settings
 from config.url import urls
@@ -70,38 +71,42 @@ class index:
     '''
     @memorize(3600)
     def GET(self):
-        starttime = time.clock()
         today = datetime.date.today()
         week_start = today - datetime.timedelta(today.weekday())
         week_end = week_start + datetime.timedelta(6)
-        user = db.query(' select u.*, count(s.user_id) as "count" from solution s, user u where s.user_id = u.user_id and u.permission = 1 group by s.user_id order by u.grade desc, u.user_id desc')
-        problem = db.query('select * from problem order by pid')
+        week_start = str(week_start).replace('-', '/')
+        week_end = str(week_end).replace('-', '/')
+        user = db.query('select u.user_id, u.user_name, u.class1, count(s.user_id) as "count" from solution s, user u where s.user_id = u.user_id and u.permission = 1 group by s.user_id order by u.grade desc, u.user_id desc')
+        problem = db.query('select pid, deadline from problem order by pid')
+        user = list(user)
+        problem = list(problem)
+        table_width = str(len(user)*100) + 'px'
+        print week_start, week_end
+        return render.index(user, table_width, problem, cate_len, week_start, week_end)
+    def POST(self):
+        user = db.query('select u.user_id, u.user_name, u.class1, count(s.user_id) as "count" from solution s, user u where s.user_id = u.user_id and u.permission = 1 group by s.user_id order by u.grade desc, u.user_id desc')
+        problem = db.query('select pid, deadline from problem order by pid')
         solution = db.query('select solution.pid, solution.user_id, solution.actime from solution,user,problem where user.user_id = solution.user_id and problem.pid = solution.pid and user.permission=1 order by solution.pid, user.grade desc, user.user_id desc')
         user = list(user)
         problem = list(problem)
         solution = list(solution)
-        table_width = str(len(user)*100) + 'px'
         pro_list = []
         flag = 0
         for pro in problem:
-            p_str = '<tr>'
+            pk = pro.pid
+            pv = []
             for u in user:
                 if flag == 0 and solution[0].pid == pro.pid and u.user_id == solution[0].user_id:
-                    if split_date(solution[0].actime) >= week_start and split_date(solution[0].actime) <= week_end:
-                        p_str += '<td class="danger">' + solution[0].actime + '</td>'
-                    else:
-                        p_str += '<td class="success">' + solution[0].actime + '</td>'
+                    pv.append(solution[0].actime)
                     del solution[0]
                     if not solution:
                         flag = 1
                         continue
-                    continue
-                p_str += '<td>&nbsp;</td>'
-            p_str += '</tr>'
-            pro_list.append(p_str)
-        endtime = time.clock()
-        print endtime - starttime
-        return render.index(pro_list, user, table_width, problem, cate_len)
+                else:
+                    pv.append('')
+            pd = dict([(pk, pv)])
+            pro_list.append(pd)
+        return json.dumps(pro_list, separators=(',',':'))
 
 class login:
     '''

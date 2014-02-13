@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.34, for debian-linux-gnu (i686)
+-- MySQL dump 10.13  Distrib 5.5.29, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: stepbystep
 -- ------------------------------------------------------
--- Server version	5.5.34-0ubuntu0.12.04.2
+-- Server version	5.5.29-0ubuntu0.12.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -2876,6 +2876,69 @@ INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (14,40,'2014-02-09');
 INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (14,44,'2014-02-09');
 INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (14,54,'2014-02-09');
 INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (16,170,'2014-02-09');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (14,41,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (14,42,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (14,43,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (14,51,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (14,55,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (14,59,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (14,60,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (14,61,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (14,64,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (1,115,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (1,209,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (2,119,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (2,120,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (2,121,'2014-02-11');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (2,122,'2014-02-11');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (4,134,'2014-02-11');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (4,135,'2014-02-11');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (5,110,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (5,112,'2014-02-11');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (5,124,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (5,125,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (6,100,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (6,102,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (6,104,'2014-02-11');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (6,155,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (6,156,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (8,103,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (8,106,'2014-02-11');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (8,107,'2014-02-11');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (8,108,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (8,109,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (8,116,'2014-02-11');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (8,132,'2014-02-11');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (8,172,'2014-02-11');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (9,109,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (9,110,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (10,8,'2014-02-11');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (10,31,'2014-02-11');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (10,41,'2014-02-11');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (10,63,'2014-02-11');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (10,75,'2014-02-11');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (10,94,'2014-02-11');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (10,126,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (10,127,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (11,107,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (11,119,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (11,121,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (11,122,'2014-02-11');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (11,128,'2014-02-11');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (11,172,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (14,57,'2014-02-11');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (14,58,'2014-02-11');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (14,62,'2014-02-11');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (14,63,'2014-02-11');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (14,94,'2014-02-11');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (14,134,'2014-02-11');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (15,109,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (15,134,'2014-02-11');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (15,135,'2014-02-11');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (16,173,'2014-02-10');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (16,174,'2014-02-11');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (16,205,'2014-02-09');
+INSERT INTO `solution` (`user_id`, `pid`, `actime`) VALUES (6,32,'2014-02-12');
 /*!40000 ALTER TABLE `solution` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2942,25 +3005,25 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (1,'李一宁','lin375691011',2012,'软件1205',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,130,NULL,5810);
-INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (2,'潘娅楠','953308147',2012,'计科1201',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,124,NULL,6131);
-INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (3,'部文杰','wolfred7464',2012,'计科1204',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,108,NULL,7150);
-INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (4,'柴金鑫','448091730',2012,'计科1201',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,61,NULL,11963);
-INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (5,'朱鸣啸','354898002',2012,'计科1204',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,137,NULL,5490);
-INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (6,'徐建','12110501022',2012,'计科1201',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,102,NULL,7612);
-INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (7,'李征南','zhengnanlee',2012,'通信1202',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,117,NULL,6556);
-INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (8,'鲁文娜','12120501047',2012,'计科1201',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,120,NULL,6368);
-INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (9,'徐福龙','1018596027',2012,'计科1204',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,129,NULL,5844);
-INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (10,'刘爱红','12120501046',2012,'计科1201',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,116,NULL,6597);
-INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (11,'樊明会','fan1019',2012,'计科1201',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,113,NULL,6792);
-INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (12,'崔哲','tiankecz',2011,'计科1101',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,236,NULL,2639);
-INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (13,'尚灿芳','shangyu111',2011,'计科1102',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,192,NULL,3572);
-INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (14,'秦川','pony1993',2011,'计科1101',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,211,NULL,3100);
-INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (15,'赵鹏','rowanhao',2011,'计科1102',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,160,NULL,4518);
-INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (16,'高永鑫','1111057162',2011,'软件1105',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,142,NULL,5280);
-INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (17,'郭宝星','gbaoxing',2010,'计科1001',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,250,NULL,2427);
-INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (18,'张金虎','1011051119',2010,'计科1001',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,215,NULL,3031);
-INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (0,'root','sdutacm1',2011,'计科1102',2,'d251cb9565547ab1c86dfa6cbdb82397d8983977',NULL,NULL,125,NULL,6108);
+INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (1,'李一宁','lin375691011',2012,'软件1205',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,131,NULL,5761);
+INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (2,'潘娅楠','953308147',2012,'计科1201',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,130,NULL,5809);
+INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (3,'部文杰','wolfred7464',2012,'计科1204',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,108,NULL,7156);
+INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (4,'柴金鑫','448091730',2012,'计科1201',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,64,NULL,11503);
+INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (5,'朱鸣啸','354898002',2012,'计科1204',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,141,NULL,5325);
+INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (6,'徐建','12110501022',2012,'计科1201',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,108,NULL,7166);
+INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (7,'李征南','zhengnanlee',2012,'通信1202',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,117,NULL,6562);
+INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (8,'鲁文娜','12120501047',2012,'计科1201',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,129,NULL,5850);
+INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (9,'徐福龙','1018596027',2012,'计科1204',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,131,NULL,5746);
+INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (10,'刘爱红','12120501046',2012,'计科1201',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,125,NULL,6060);
+INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (11,'樊明会','fan1019',2012,'计科1201',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,119,NULL,6447);
+INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (12,'崔哲','tiankecz',2011,'计科1101',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,236,NULL,2640);
+INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (13,'尚灿芳','shangyu111',2011,'计科1102',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,192,NULL,3573);
+INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (14,'秦川','pony1993',2011,'计科1101',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,228,NULL,2772);
+INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (15,'赵鹏','rowanhao',2011,'计科1102',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,164,NULL,4351);
+INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (16,'高永鑫','1111057162',2011,'软件1105',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,144,NULL,5194);
+INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (17,'郭宝星','gbaoxing',2010,'计科1001',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,250,NULL,2430);
+INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (18,'张金虎','1011051119',2010,'计科1001',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,215,NULL,3032);
+INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (0,'root','sdutacm1',2011,'计科1102',2,'dfe4719cce640c69ae95ef0b2773600c65a29170',NULL,NULL,130,NULL,5836);
 INSERT INTO `user` (`user_id`, `user_name`, `poj_name`, `grade`, `class1`, `permission`, `passwd`, `blog`, `email`, `poj_solved`, `sex`, `poj_rank`) VALUES (19,'赵利强','Moon_1st',2009,'计科0906',1,'ceac66b2d71a9b96ab6b77fe6db6197d2a9d5aa7',NULL,NULL,418,NULL,1007);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2974,4 +3037,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-02-10 18:13:12
+-- Dump completed on 2014-02-13 10:13:11
