@@ -373,6 +373,7 @@ class statistics_week:
     '''
     按周统计，寒假、上半年、暑假、下半年分别为1、2、3、4。
     '''
+    @memorize(3600)
     def GET(self, year, half):
         start_year = 2011               
         today = datetime.date.today()

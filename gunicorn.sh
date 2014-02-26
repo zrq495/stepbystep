@@ -6,4 +6,5 @@
 #########################################################################
 #!/bin/bash
 
+sudo pkill gunicorn
 sudo gunicorn code:application -D --pid /var/run/gunicorn.pid -b 0.0.0.0:1111

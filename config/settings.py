@@ -5,7 +5,8 @@ import web
 import datetime
 
 #数据库链接
-db = web.database(dbn='mysql', db='stepbystep', user='root', pw='rootpass')
+db = web.database(host='localhost', dbn='mysql', db='stepbystep', user='root', pw='rootpass')
+#db = web.database(host='192.168.3.2', dbn='mysql', db='stepbystep', user='root', pw='rootpass')
 
 #模板位置
 render = web.template.render('templates/', cache=False)
