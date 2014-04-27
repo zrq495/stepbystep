@@ -504,6 +504,9 @@ class statistics_week:
 
 
 class statistics_all:
+    '''
+    各大oj做题统计
+    '''
     def GET(self):
         try:
             sql = 'select user_name,grade,sdutoj_solved,poj_solved,hdoj_solved,cf_rating,tc_rating,"sum_solved" from user where permission != 2 order by grade desc'
@@ -511,6 +514,7 @@ class statistics_all:
             data = list(data)
             for i in data:
                 i.sum_solved=i.sdutoj_solved+i.poj_solved+i.hdoj_solved
+            # 按总题数 + cf rating + tc rating 排名
             data.sort(key=lambda x: x.sum_solved+x.cf_rating+x.tc_rating, reverse=1)
         except Exception, e:
             logging.error(e)
