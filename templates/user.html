@@ -1,0 +1,110 @@
+$def with(user)
+<!DOCTYPE html>
+$:render.header()
+
+        <div class="container bs-docs-container">
+            <div class="row">
+
+                <div class="col-md-3">
+                    <div class="bs-sidebar hidden-print" role="complementary">
+                        <ul class="nav bs-sidenav">
+                            <li>
+                                <a href="#userprofile">个人资料</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-9" role="main">
+                    <div class="bs-docs-section">
+                        <div class="page-header">
+                            <h1 id="userprofile">个人资料</h1>
+                        </div>
+                        <table class="table table-bordered table-hover table-striped" id="userprofiletable">
+                            <thead>
+                                <tr>
+                                    <th>UserName</th>
+                                    <th>POJName</th>
+                                    <th>Grade</th>
+                                    <th>Class</th>
+                                    <th>Manage</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                $for u in user:
+                                    <tr>
+                                    <td>$u.user_name</td>
+                                    <td>$u.poj_name</td>
+                                    <td>$u.grade</td>
+                                    <td>$u.class1</td>
+                                    $if u.permission == 0:
+                                        $ status = 'Disabled'
+                                    $elif u.permission == 1:
+                                        $ status = 'Enable'
+                                    <td><a href="#" data-toggle="modal" data-target="#edituser-$u.user_id">Edit</a> | $status</td>
+                                        <dir class="modal fade" id="edituser-$u.user_id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <form role="form" action="/edituser" method="POST">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                        </div>
+                                                        <br>
+                                                        <p align="center" style="color:red">*留空不修改</p>
+                                                        <div class="modal-body">
+                                                            <div class="form-group">
+                                                                <label>UserName</label>
+                                                                <input type="text" class="form-control" id="editusername-$u.user_id" name="editusername-$u.user_id" value="$u.user_name">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Password</label>
+                                                                <input type="password" class="form-control" id="edituserpassword-$u.user_id" name="edituserpassword-$u.user_id" value="">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>POJName</label>
+                                                                <input type="text" class="form-control" id="edituserpojname-$u.user_id" name="edituserpojname-$u.user_id" value="$u.poj_name">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Grade</label>
+                                                                <input type="text" class="form-control" id="editusergrade-$u.user_id" name="editusergrade-$u.user_id" value="$u.grade">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>Class</label>
+                                                                <input type="text" class="form-control" id="edituserclass-$u.user_id" name="edituserclass-$u.user_id" value="$u.class1">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>SDUTOJName</label>
+                                                                <input type="text" class="form-control" id="editusersdutojname-$u.user_id" name="editusersdutojname-$u.user_id" value="$u.sdutoj_id">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>HDOJName</label>
+                                                                <input type="text" class="form-control" id="edituserhdojname-$u.user_id" name="edituserhdojname-$u.user_id" value="$u.hdoj_id">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>CFName</label>
+                                                                <input type="text" class="form-control" id="editusercfname-$u.user_id" name="editusercfname-$u.user_id" value="$u.cf_id">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label>TCName</label>
+                                                                <input type="text" class="form-control" id="editusertcname-$u.user_id" name="editusertcname-$u.user_id" value="$u.tc_id">
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </dir>
+                                    </tr>
+                            </tbody>
+                        </table>
+            </div>
+        </div>
+
+
+
+
+
+$:render.footer()

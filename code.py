@@ -20,7 +20,7 @@ render = settings.render
 
 #session
 curdir = os.path.dirname(__file__)
-session = web.session.Session(app, web.session.DiskStore(os.path.join(curdir, 'sessions')), initializer={'login': 0})
+session = web.session.Session(app, web.session.DiskStore(os.path.join(curdir, 'sessions')), initializer={'login': 0, 'isadmin': 0, 'user_name':''})
 
 #日志
 logging.basicConfig(filename = os.path.join(os.getcwd(), 'log.txt'), level = logging.INFO, format = '%(asctime)s - %(levelname)s: %(message)s')
@@ -120,22 +120,34 @@ class login:
         username = web.input().username
         passwd = web.input().passwd
         try:
-            ident = db.query('select * from user where user_name = "%s" and permission = 2' %username)[0]
-            if ident.passwd == hashpasswd(passwd):
+            ident = db.query('select * from user where user_name = "%s"' %username)
+            ident = list(ident)
+            if ident and ident[0].passwd == hashpasswd(passwd):
                 session.login = 1
-                #raise web.seeother('/admin')
-                user = db.query('select * from user where permission != 2 order by grade desc, user_id desc')
-                category = db.query('select problem.cid, category.rank, category.cname, problem.deadline from problem, category where problem.cid = category.cid group by problem.cid order by problem.cid')
-                start_date = db.query('select * from startdate order by DATE_FORMAT(start_date, "%%Y-%%m-%%d") desc')
-                user = list(user)
-                category = list(category)
-                start_date = list(start_date)
-                logging.info('登录成功：' + username.encode('utf8') + ':' + passwd.encode('utf8'))
-                return render.admin(user, category, rank_len, start_date)
+                session.user_name = username
+                if ident[0].permission == 2:
+                    print 'aaaa'
+                    session.isadmin = 1
+                    print 'bbbb'
+                    #raise web.seeother('/admin')
+                    user = db.query('select * from user where permission != 2 order by grade desc, user_id desc')
+                    category = db.query('select problem.cid, category.rank, category.cname, problem.deadline from problem, category where problem.cid = category.cid group by problem.cid order by problem.cid')
+                    start_date = db.query('select * from startdate order by DATE_FORMAT(start_date, "%%Y-%%m-%%d") desc')
+                    user = list(user)
+                    category = list(category)
+                    start_date = list(start_date)
+                    logging.info('登录成功：' + username.encode('utf8') + ':' + passwd.encode('utf8'))
+                    return render.admin(user, category, rank_len, start_date)
+                else:
+                    print 'cccc'
+                    session.isadmin = 0
+                    print 'dddd'
+                    return render.user(ident)
             else:
                 logging.info('登录失败：' + username.encode('utf8') + ':' + passwd.encode('utf8'))
                 return render.error('用户名或密码错误！', '/login')
         except Exception, e:
+            print e
             logging.info('登录失败：' + username.encode('utf8') + ':' + passwd.encode('utf8'))
             logging.error(e)
             session.login = 0
@@ -147,13 +159,18 @@ class admin:
     '''
     def GET(self):
         if logged():
-            user = db.query('select * from user where permission != 2 order by grade desc, user_id desc')
-            category = db.query('select problem.cid, category.rank, category.cname, problem.deadline from problem, category where problem.cid = category.cid group by problem.cid order by problem.cid')
-            start_date = db.query('select * from startdate order by DATE_FORMAT(start_date, "%%Y-%%m-%%d") desc')
-            user = list(user)
-            category = list(category)
-            start_date = list(start_date)
-            return render.admin(user, category, rank_len, start_date)
+            if session.isadmin == 1:
+                user = db.query('select * from user where permission != 2 order by grade desc, user_id desc')
+                category = db.query('select problem.cid, category.rank, category.cname, problem.deadline from problem, category where problem.cid = category.cid group by problem.cid order by problem.cid')
+                start_date = db.query('select * from startdate order by DATE_FORMAT(start_date, "%%Y-%%m-%%d") desc')
+                user = list(user)
+                category = list(category)
+                start_date = list(start_date)
+                return render.admin(user, category, rank_len, start_date)
+            else:
+                user = db.query('select * from user where user_name="%s"' %session.user_name)
+                user = list(user)
+                return render.user(user)
         else:
             raise web.seeother('/login')
     def POST(self):
@@ -164,7 +181,7 @@ class disabled:
     禁用用户
     '''
     def GET(self, user_id, permission):
-        if not logged():
+        if not logged() or session.isadmin == 0:
             raise web.seeother('/login')
         try:
             if permission == '0':
@@ -196,6 +213,9 @@ class edituser:
                         if key.startswith('editusername'):
                             l = key.split('-')[1]
                             db.query('update user set user_name="%s" where user_id="%s"' %(value.encode('utf-8'), l))
+                        elif key.startswith('edituserpassword'):
+                            l = key.split('-')[1]
+                            db.query('update user set passwd="%s" where user_id="%s"' %(hashpasswd(value.encode('utf-8')), l))
                         elif key.startswith('edituserpojname'):
                             l = key.split('-')[1]
                             db.query('update user set poj_name="%s" where user_id="%s"' %(value.encode('utf-8'), l))
@@ -233,7 +253,7 @@ class editdeadline:
     def GET(self):
         raise web.seeother('/login')
     def POST(self):
-        if logged():
+        if logged() and session.isadmin == 1:
             for key in web.input().keys():
                 try:
                     value = web.input().get(key)
@@ -258,7 +278,7 @@ class adduser:
     def GET(self):
         raise web.seeother('/login')
     def POST(self):
-        if logged():
+        if logged() and session.isadmin == 1:
             usernumber = web.input().get('usernumber-999999')
             items = web.input().items()
             items = sorted(items, key=lambda x:(x[0].split('-')[1], x[0].split('-')[0]))
@@ -292,7 +312,7 @@ class uploadfile:
     def GET(self):
         raise web.seeother('/login')
     def POST(self):
-        if logged():
+        if logged() and session.isadmin == 1:
             x = web.input(myfile={})
             filedir = 'upload'
             if 'myfile' in x:
@@ -503,6 +523,8 @@ class logout:
     '''
     def GET(self):
         session.login = 0
+        session.isadmin = 0
+        session.user_name = ''
         session.kill()
         raise web.seeother('/')
 
