@@ -61,7 +61,7 @@ def poj_solved(user):
         rank = re_find('<font color=red>(.*?)</font></td>', html)
         solved = re_find('<td align=center width=25%><a href=status\?result=0&user_id=.*?>(.*?)</a></td>', html)
         problem = re_find('p\((\d{4})\)', html)
-        print rank, solved
+        print 'poj', rank, solved
         if rank and solved:
             cur.execute('update user set poj_solved=%d, poj_rank=%d where user_id="%s"' %(int(solved[0]), int(rank[0]), user[0]))
             conn.commit()
@@ -77,15 +77,12 @@ def sdutoj_solved(user):
         if user_id:
             user_id = user_id[0]
             userstatusurl = 'http://acm.sdut.edu.cn/sdutoj/setting.php?userid=%s' %user_id
-            print userstatusurl
             html = get_html(userstatusurl)
             solved = re_find('<td align="right">Accept[\s\S]*?<td align="left">(\d+)</td>', html)
-            print solved
+            print 'sdutoj', solved
             if solved:
                 cur.execute('update user set sdutoj_solved=%d where user_id="%s"' %(int(solved[0]), user[0]))
                 conn.commit()
-        else:
-            print 'error'
 
 
 def hdoj_solved(user):
@@ -93,7 +90,7 @@ def hdoj_solved(user):
         userstatusurl = 'http://acm.hdu.edu.cn/userstatus.php?user=%s' %user[14]
         html = get_html(userstatusurl)
         solved = re_find('<tr><td>Problems Solved</td><td align=center>(\d+)</td></tr>', html)
-        print solved
+        print 'hdoj', solved
         if solved:
             cur.execute('update user set hdoj_solved=%d where user_id="%s"' %(int(solved[0]), user[0]))
             conn.commit()
@@ -104,7 +101,7 @@ def cf_rating(user):
         userstatusurl = 'http://codeforces.com/profile/%s' %user[16]
         html = get_html(userstatusurl)
         solved = re_find('<span style="font-weight:bold;" class="user-.*?">(\d+)</span>', html)
-        print solved
+        print 'cf', solved
         if solved:
             cur.execute('update user set cf_rating=%d where user_id="%s"' %(int(solved[0]), user[0]))
             conn.commit()
@@ -115,7 +112,7 @@ def tc_rating(user):
         userstatusurl = 'http://community.topcoder.com/tc?module=SimpleSearch&ha=%s' %user[18]
         html = get_html(userstatusurl)
         solved = re_find('<span class="coderTextGray">(\d+)</span>', html)
-        print solved
+        print 'tc', solved
         if solved:
             cur.execute('update user set tc_rating=%d where user_id="%s"'%(int(solved[0]), user[0]))
             conn.commit()

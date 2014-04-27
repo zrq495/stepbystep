@@ -511,6 +511,7 @@ class statistics_all:
             data = list(data)
             for i in data:
                 i.sum_solved=i.sdutoj_solved+i.poj_solved+i.hdoj_solved
+            data.sort(key=lambda x: x.sum_solved+x.cf_rating+x.tc_rating, reverse=1)
         except Exception, e:
             logging.error(e)
             return render.error("查询错误！", '/statistics_all')
