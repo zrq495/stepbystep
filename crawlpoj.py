@@ -109,7 +109,7 @@ def cf_rating(user):
 
 def tc_rating(user):
     if user[18]:
-        userstatusurl = 'http://community.topcoder.com/tc?module=SimpleSearch&ha=%s' %user[18]
+        userstatusurl = 'http://community.topcoder.com/tc?module=SimpleSearch&ha=%s' %user[18].encode('utf-8')
         html = get_html(userstatusurl)
         solved = re_find('<span class="coderTextGray">(\d+)</span>', html)
         print 'tc', solved

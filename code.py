@@ -76,7 +76,7 @@ class index:
         week_end = week_start + datetime.timedelta(6)
         week_start = str(week_start).replace('-', '/')
         week_end = str(week_end).replace('-', '/')
-        user = db.query('select u.user_id, u.user_name, u.class1, count(s.user_id) as "count" from solution s, user u where s.user_id = u.user_id and u.permission = 1 group by s.user_id order by u.grade desc, u.user_id desc')
+        user = db.query('select u.user_id, u.user_name, u.class1, count(s.user_id) as "count" from solution s, user u where s.user_id = u.user_id and u.permission = 1  and u.grade > %d group by s.user_id order by u.grade desc, u.user_id desc' %(today.year - 4))
         problem = db.query('select pid, deadline from problem order by pid')
         user = list(user)
         problem = list(problem)
@@ -84,9 +84,10 @@ class index:
         print week_start, week_end
         return render.index(user, table_width, problem, cate_len, week_start, week_end)
     def POST(self):
-        user = db.query('select u.user_id, u.user_name, u.class1, count(s.user_id) as "count" from solution s, user u where s.user_id = u.user_id and u.permission = 1 group by s.user_id order by u.grade desc, u.user_id desc')
+        today = datetime.date.today()
+        user = db.query('select u.user_id, u.user_name, u.class1, count(s.user_id) as "count" from solution s, user u where s.user_id = u.user_id and u.permission = 1  and u.grade > %d group by s.user_id order by u.grade desc, u.user_id desc' %(today.year - 4))
         problem = db.query('select pid, deadline from problem order by pid')
-        solution = db.query('select solution.pid, solution.user_id, solution.actime from solution,user,problem where user.user_id = solution.user_id and problem.pid = solution.pid and user.permission=1 order by solution.pid, user.grade desc, user.user_id desc')
+        solution = db.query('select solution.pid, solution.user_id, solution.actime from solution,user,problem where user.user_id = solution.user_id and problem.pid = solution.pid and user.permission=1 and user.grade > %d order by solution.pid, user.grade desc, user.user_id desc' %(today.year - 4))
         user = list(user)
         problem = list(problem)
         solution = list(solution)
@@ -348,7 +349,7 @@ class statistics:
     '''
     @memorize(3600)
     def GET(self):
-        user = db.query('select * from user where permission=1 order by grade desc, user_id desc')
+        user = db.query('select * from user where permission!=2 order by grade desc, user_id desc')
         count = []
         for u in user:
             singlecount = []
@@ -387,7 +388,7 @@ class statistics_year:
             error = '年份错误！'
             return render.error(error, '/statistics/year')
         else:
-            user = db.query('select * from user where permission=1 and grade>=%d and grade<=%d order by grade desc, user_id desc' %(year - 4, year))
+            user = db.query('select * from user where permission!=2 and grade>=%d and grade<=%d order by grade desc, user_id desc' %(year - 4, year))
             count = []
             for u in user:
                 cnt = [0] * 15
