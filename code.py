@@ -205,6 +205,18 @@ class edituser:
                         elif key.startswith('edituserclass'):
                             l = key.split('-')[1]
                             db.query('update user set class1="%s" where user_id="%s"' %(value.encode('utf-8'), l))
+                        elif key.startswith('editusersdutojname'):
+                            l = key.split('-')[1]
+                            db.query('update user set sdutoj_id="%s" where user_id="%s"' %(value.encode('utf-8'), l))
+                        elif key.startswith('edituserhdojname'):
+                            l = key.split('-')[1]
+                            db.query('update user set hdoj_id="%s" where user_id="%s"' %(value.encode('utf-8'), l))
+                        elif key.startswith('editusercfname'):
+                            l = key.split('-')[1]
+                            db.query('update user set cf_id="%s" where user_id="%s"' %(value.encode('utf-8'), l))
+                        elif key.startswith('editusertcname'):
+                            l = key.split('-')[1]
+                            db.query('update user set tc_id="%s" where user_id="%s"' %(value.encode('utf-8'), l))
                         else:
                             return render.error('input error !', '/admin')
                     except Exception, e:
@@ -469,6 +481,21 @@ class statistics_week:
     def POST(self):
         year, half = web.input().select_year, web.input().select_half
         raise web.seeother('statistics/%s/week/%s' %(year, half))
+
+
+class statistics_all:
+    def GET(self):
+        try:
+            sql = 'select user_name,grade,sdutoj_solved,poj_solved,hdoj_solved,cf_rating,tc_rating,"sum_solved" from user where permission != 2 order by grade desc'
+            data = db.query(sql)
+            data = list(data)
+            for i in data:
+                i.sum_solved=i.sdutoj_solved+i.poj_solved+i.hdoj_solved
+        except Exception, e:
+            logging.error(e)
+            return render.error("查询错误！", '/statistics_all')
+        return render.statistics_all(data)
+
 
 class logout:
     '''

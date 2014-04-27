@@ -1,0 +1,42 @@
+$def with(data)
+<!DOCTYPE html>
+$:render.header()
+
+<style>
+    body { padding-top: 70px; }
+</style>
+
+        <div class="container bs-docs-container">
+            <div class="row">
+                <table class="table table-bordered table-hover tablesorter table-striped" id="staticsticstable">
+                    <thead>
+                        <tr>
+                            <th>姓名</th>
+                            <th>年级</th>
+                            <th>SDUTOJ题数</th>
+                            <th>POJ题数</th>
+                            <th>HDOJ题数</th>
+                            <th>总题数</th>
+                            <th>CF Rating</th>
+                            <th>TC Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        $for d in data:
+                            <tr>
+                            <td>$d.user_name</td>
+                            <td>$d.grade</td>
+                            <td>$d.sdutoj_solved</td>
+                            <td>$d.poj_solved</td>
+                            <td>$d.hdoj_solved</td>
+                            $#<td>$d.sdutoj_solved+$d.poj_solved+$d.hdoj_solved</td>
+                            <td>$d.sum_solved</td>
+                            <td class="cf">$d.cf_rating</td>
+                            <td class="tc">$d.tc_rating</td>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+$:render.footer()

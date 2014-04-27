@@ -21,6 +21,72 @@
 	    }); 
         </script>
         <script type="text/javascript">
+            $$(document).ready(function()
+                    {
+                    $$(".tc").each(function()
+                        {
+                        if(Number($$(this).text())<900)
+                        {
+                        $$(this).css("color","gray");
+                        $$(this).css("font-weight","bold");
+                        }
+                        else if(Number($$(this).text())<1200)
+                        {
+                        $$(this).css("color","green");
+                        $$(this).css("font-weight","bold");
+                        }
+                        else if(Number($$(this).text())<1500)
+                        {
+                        $$(this).css("color","blue");
+                        $$(this).css("font-weight","bold");
+                        }
+                        else if(Number($$(this).text())<2200)
+                        {
+                        $$(this).css("color","yellow");
+                        $$(this).css("font-weight","bold");
+                        }
+                        else
+                        {
+                            $$(this).css("color","red");
+                            $$(this).css("font-weight","bold");
+                        }
+                        });
+            $$(".cf").each(function()
+                    {
+                    if(Number($$(this).text())<1200)
+                    {
+                    $$(this).css("color","gray");
+                    $$(this).css("font-weight","bold");
+                    }
+                    else if(Number($$(this).text())<1500)
+                    {
+                    $$(this).css("color","green");
+                    $$(this).css("font-weight","bold");
+                    }
+                    else if(Number($$(this).text())<1700)
+                    {
+                    $$(this).css("color","blue");
+                    $$(this).css("font-weight","bold");
+                    }
+                    else if(Number($$(this).text())<1800)
+                    {
+                    $$(this).css("color","#a0a");
+                    $$(this).css("font-weight","bold");
+                    }
+                    else if(Number($$(this).text())<2000)
+                    {
+                        $$(this).css("color","#FF8C00");
+                        $$(this).css("font-weight","bold");
+                    }
+                    else
+                    {
+                        $$(this).css("color","red");
+                        $$(this).css("font-weight","bold");
+                    }
+                    });
+                    });
+</script>
+        <script type="text/javascript">
             $$('.form_date').datetimepicker({
                 language:  'zh-CN',
                 weekStart: 1,

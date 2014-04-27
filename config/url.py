@@ -15,4 +15,5 @@ urls =  (
     '/editdeadline', 'editdeadline',
     '/adduser', 'adduser',
     '/uploadfile', 'uploadfile',
+    '/statistics_all', 'statistics_all',
 )
