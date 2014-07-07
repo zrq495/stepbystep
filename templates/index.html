@@ -1,11 +1,8 @@
 $def with(user, table_width, problem, cate_len, week_start, week_end)
 $:render.header()
 
-<style>
+<style type="text/css">
     body { padding-top: 70px; }
-    table.user{
-        width:$table_width;
-    }
     td {
         font-size:14px;
     }
@@ -987,15 +984,16 @@ $:render.header()
                     </table>
                 </div>
                 <div id="test" class="col-md-8 fix_div2" style="height:74px" role="main">
-                    <table class="table table-bordered user" style="background-color:#FFFFFF;margin:0px;0px;0px;0px">
+                    <table id="table_user" class="table table-bordered" style="background-color:#FFFFFF;margin:0px;0px;0px;0px;width:$table_width">
                         <tr>
                         $for u in user:
-                            <th onclick="jumpfunc($loop.index0)">$u.user_name<br>$u.class1<br>$u.count题</th>
+                            <th onclick="jumpfunc(this, $loop.index0)"><button type="button" class="close" aria-hidden="true" onclick="closefunc(this)">&times;</button>$u.user_name<br>$u.class1<br>$u.count题</th>
+                            $#<th onclick="jumpfunc($loop.index0)"><button type="button" class="close" aria-hidden="true" onclick="closefunc($loop.index0)">&times;</button>$u.user_name<br>$u.class1<br>$u.count题</th>
                         </tr>
                     </table>
                 </div>
                 <div class="col-md-8" role="main">
-                    <table class="table table-bordered user"> 
+                    <table class="table table-bordered" id="table_solution_t" style="width:$table_width"> 
                         <tbody id="table_solution">
                         </tbody>
                     </table>
@@ -1004,15 +1002,17 @@ $:render.header()
         </div>
 
 <script>
-    function jumpfunc(id)
+    function jumpfunc(obj, id)
     {
-        var t = document.getElementById("table_solution");
+        var t = document.getElementById("table_solution_t");
+        var cid = obj.cellIndex;
         var subid = 0;
         var length = t.rows.length;
         for (var i=0; i<length; i++)
         {
-            if (t.rows[i].cells[id].innerHTML == "&nbsp;")
+            if (t.rows[i].cells[cid].innerHTML == "&nbsp;")
             {
+                t.rows[i].cells[cid].setAttribute("class", "warning");
                 if (i-4>=0)
                     i -= 4
                 subid = i;
@@ -1020,6 +1020,21 @@ $:render.header()
             }
         }
         location.href="#" + subid + "_" + id;
+    }
+    function closefunc(obj)
+    {
+        var cid = obj.parentNode.cellIndex;
+        delc("table_user", cid);
+        delc("table_solution_t", cid);
+    }
+    function delc(tname, cid)
+    {
+        var t = document.getElementById(tname);
+        var clength = t.rows[0].cells.length;
+        for (var i=0; i<t.rows.length; i++)
+            t.rows[i].deleteCell(cid);
+        var w = t.style.width;
+        t.style.width = parseInt(w)-100;
     }
     function load()
     {
