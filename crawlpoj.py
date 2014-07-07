@@ -21,7 +21,7 @@ today = datetime.date.today()
 
 def get_html(url):
     req = urllib2.Request(url, headers=i_headers) 
-    res = urllib2.urlopen(req)
+    res = urllib2.urlopen(req, timeout=10)
     html = res.read()
     return html
 
@@ -38,7 +38,8 @@ def poj_ac(user, solved_problem):
             cur.execute('select * from solution s where s.user_id=%d and s.pid=%d' %(user[0], pro[0]))
             solution = cur.fetchall()
             if solution:
-                print user[1].encode('utf8'), pro[1], solution[0][2], 'exist'
+                #print user[1].encode('utf8'), pro[1], solution[0][2], 'exist'
+                pass
             else:
                 if str(pro[1]) in solved_problem:
                     statusurl = 'http://poj.org/status?problem_id=%d&user_id=%s&result=0&language=' %(pro[1], user[2]) 
@@ -50,9 +51,10 @@ def poj_ac(user, solved_problem):
                         cur.execute('insert into solution(user_id, pid, actime) values(%d, %d, "%s")' %(user[0], pro[0], actime.split()[0]))
                         conn.commit()
                     else:
-                        print user[1].encode('utf8'), pro[1], 'waiting' 
+                        #print user[1].encode('utf8'), pro[1], 'waiting' 
+                        pass
                     time.sleep(0.5)
-                print user[1].encode('utf8'), pro[1], 'waiting'
+                #print user[1].encode('utf8'), pro[1], 'waiting'
 
 def poj_solved(user):
     if user[2]:
@@ -123,6 +125,7 @@ if __name__ == '__main__':
     cur.execute('select * from user')
     user = cur.fetchall()
     for u in user:
+        print u[1].encode('utf-8')
         solved_problem = poj_solved(u)
         poj_ac(u, solved_problem)
         sdutoj_solved(u)

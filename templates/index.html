@@ -990,7 +990,7 @@ $:render.header()
                     <table class="table table-bordered user" style="background-color:#FFFFFF;margin:0px;0px;0px;0px">
                         <tr>
                         $for u in user:
-                            <th>$u.user_name<br>$u.class1<br>$u.count题</th>
+                            <th onclick="jumpfunc($loop.index0)">$u.user_name<br>$u.class1<br>$u.count题</th>
                         </tr>
                     </table>
                 </div>
@@ -1004,6 +1004,23 @@ $:render.header()
         </div>
 
 <script>
+    function jumpfunc(id)
+    {
+        var t = document.getElementById("table_solution");
+        var subid = 0;
+        var length = t.rows.length;
+        for (var i=0; i<length; i++)
+        {
+            if (t.rows[i].cells[id].innerHTML == "&nbsp;")
+            {
+                if (i-4>=0)
+                    i -= 4
+                subid = i;
+                break;
+            }
+        }
+        location.href="#" + subid + "_" + id;
+    }
     function load()
     {
         var xmlhttp;
@@ -1039,14 +1056,21 @@ $:render.header()
                             {
                                 var t = new Date(Date.parse(item[x][y].replace(/-/g, "/")));
                                 if (t>=s && t<=e)
+                                {
                                     td.setAttribute("class", "danger");
+                                    td.setAttribute("id", i+"_"+y);
+                                }
                                 else
+                                {
                                     td.setAttribute("class", "success");
+                                    td.setAttribute("id", i+"_"+y);
+                                }
                                 td.innerHTML = item[x][y];
                             }
                             else
                             {
                                 td.innerHTML = "&nbsp;"
+                                td.setAttribute("id", i+"_"+y);
                             }
                             tr_json.appendChild(td);
                         }
