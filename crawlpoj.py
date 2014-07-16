@@ -9,6 +9,8 @@ import datetime
 
 conn = MySQLdb.connect('localhost','root','123456','stepbystep',charset='utf8')
 cur =conn.cursor()
+temp_conn = MySQLdb.connect('localhost', 'root', '123456', 'oj', charset='utf8')
+temp_cur = temp_conn.cursor()
 
 #proxy = {'http':'27.24.158.155:84'}                                                                                
 #proxy = {'http':'127.0.1:8087'}
@@ -72,8 +74,6 @@ def poj_solved(user):
 
 def sdutoj_solved(user):
     if user[12]:
-        temp_conn = MySQLdb.connect('localhost', 'root', '123456', 'oj', charset='utf8')
-        temp_cur = temp_conn.cursor()
         temp_cur.execute('select user_id from user where user_name="%s"' % user[12])
         user_id = temp_cur.fetchall()
         if user_id:
