@@ -705,6 +705,7 @@ class statistics_all:
     各大oj做题统计
     '''
 
+    @memorize(3600)
     def GET(self):
         try:
             sql = 'select user_name,grade,sdutoj_solved,poj_solved,hdoj_solved,cf_rating,tc_rating,"sum_solved" from user where permission != 2 order by grade desc'
@@ -737,7 +738,8 @@ class logout:
         session.kill()
         raise web.seeother('/')
 
-#from web.httpserver import StaticMiddleware
-#application = app.wsgifunc(StaticMiddleware)
 if __name__ == '__main__':
     app.run()
+else:
+    from web.httpserver import StaticMiddleware
+    application = app.wsgifunc(StaticMiddleware)
