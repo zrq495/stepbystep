@@ -85,6 +85,54 @@
                         $$(this).css("font-weight","bold");
                     }
                     });
+            $$(".bc").each(function()
+                        {
+                        if(Number($$(this).text())<1100)
+                        {
+                        $$(this).css("color","#cccccc");
+                        $$(this).css("font-weight","bold");
+                        }
+                        else if(Number($$(this).text())<1300)
+                        {
+                        $$(this).css("color","#aaffaa");
+                        $$(this).css("font-weight","bold");
+                        }
+                        else if(Number($$(this).text())<1500)
+                        {
+                        $$(this).css("color","#77ff77");
+                        $$(this).css("font-weight","bold");
+                        }
+                        else if(Number($$(this).text())<1700)
+                        {
+                        $$(this).css("color","#aaabfe");
+                        $$(this).css("font-weight","bold");
+                        }
+                        else if(Number($$(this).text())<1700)
+                        {
+                        $$(this).css("color","#aaabfe");
+                        $$(this).css("font-weight","bold");
+                        }
+                        else if(Number($$(this).text())<1900)
+                        {
+                        $$(this).css("color","#ff8efe");
+                        $$(this).css("font-weight","bold");
+                        }
+                        else if(Number($$(this).text())<2100)
+                        {
+                        $$(this).css("color","#fecc87");
+                        $$(this).css("font-weight","bold");
+                        }
+                        else if(Number($$(this).text())<2300)
+                        {
+                        $$(this).css("color","#ffbb56");
+                        $$(this).css("font-weight","bold");
+                        }
+                        else
+                        {
+                            $$(this).css("color","red");
+                            $$(this).css("font-weight","bold");
+                        }
+                        });
                     });
 </script>
         <script type="text/javascript">

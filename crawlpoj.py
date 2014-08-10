@@ -29,10 +29,11 @@ oj_info = [
 ["bc_rating", 20, "http://bestcoder.hdu.edu.cn/rating.php?user=%s", "<p>Rating: </p>[\s\S]*?<p>(\d+) \(max \d+\)</p>"],
 ]
 
-re_sdutoj = re.compile('<td align="right">Accept[\s\S]*?<td align="left">(\d+)</td>')
-re_poj_ac = re.compile('<tr align=center><td>.*?</td><td><a href=userstatus\?user_id=.*?</a></td><td><a href=problem\?id=.*?</a></td><td><font color=blue>Accepted</font></td><td>.*?</td><td>.*?</td><td>.*?</td><td>.*?</td><td>(.*?)</td></tr>')
-re_poj_solved = re.compile('p\((\d{4})\)')
-re_poj_rank = re.compile('<font color=red>(.*?)</font></td>')
+re_sdutoj = re.compile(r'<td align="right">Accept[\s\S]*?<td align="left">(\d+)</td>')
+re_poj_ac = re.compile(r'<tr align=center><td>.*?</td><td><a href=userstatus\?user_id=.*?</a></td><td><a href=problem\?id=.*?</a></td><td><font color=blue>Accepted</font></td><td>.*?</td><td>.*?</td><td>.*?</td><td>.*?</td><td>(.*?)</td></tr>')
+re_poj_pro = re.compile(r'p\((\d{4})\)')
+re_poj_rank = re.compile(r'<font color=red>(.*?)</font></td>')
+re_poj_solved = re.compile(r'<td align=center width=25%><a href=status\?result=0&user_id=.*?>(.*?)</a></td>')
 
 
 def get_html(url):
@@ -62,7 +63,7 @@ def poj_ac(user, solved_problem):
                 if str(pro[1]) in solved_problem:
                     statusurl = 'http://poj.org/status?problem_id=%d&user_id=%s&result=0&language=' %(pro[1], user[2]) 
                     html = get_html(statusurl)
-                    datas = re_poj_ac(html)
+                    datas = re_poj_ac.findall(html)
                     if datas:
                         actime = datas[-1]
                         print user[1].encode('utf8'), pro[1], actime , 'new !!!'
@@ -80,8 +81,8 @@ def poj_solved(user):
         userstatusurl = 'http://poj.org/userstatus?user_id=%s' %(user[2])
         html = get_html(userstatusurl)
         rank = re_poj_rank.findall(html)
-        solved = re_poj.findall(html)
-        problem = re_poj_solved(html)
+        solved = re_poj_solved.findall(html)
+        problem = re_poj_pro.findall(html)
         print 'poj', rank, solved
         if rank and solved:
             cur.execute('update user set poj_solved=%d, poj_rank=%d where user_id="%s"' %(int(solved[0]), int(rank[0]), user[0]))
@@ -122,7 +123,13 @@ if __name__ == '__main__':
     for oj in oj_info:
         oj[3] = re.compile(r"%s" % oj[3])
     for u in user:
-        print u[1].encode('utf-8')
-        for oj in oj_info:
-            oj_solved(u, oj)
+        try:
+            print u[1].encode('utf-8')
+            solved_problem = poj_solved(u)
+            poj_ac(u, solved_problem)
+            sdutoj_solved(u)
+            for oj in oj_info:
+                oj_solved(u, oj)
+        except Exception:
+            pass
     print time.ctime()

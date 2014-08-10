@@ -708,19 +708,21 @@ class statistics_all:
     @memorize(3600)
     def GET(self):
         try:
-            sql = 'select user_name,grade,sdutoj_solved,poj_solved,hdoj_solved,cf_rating,tc_rating,"sum_solved" from user where permission != 2 order by grade desc'
+            sql = 'select user_name,grade,sdutoj_solved,poj_solved,hdoj_solved,cf_rating,tc_rating,bc_rating,"sum_solved" from user where permission != 2 order by grade desc'
             data = db.query(sql)
             data = list(data)
             for i in data:
                 i.sum_solved = i.sdutoj_solved + i.poj_solved + i.hdoj_solved
-            # 按总题数 + cf rating + tc rating 排名
+            # 按总题数 + cf rating + tc rating + bc rating 排名
             data.sort(
                 key=lambda x: x.sum_solved +
                 x.cf_rating +
-                x.tc_rating,
+                x.tc_rating +
+                x.bc_rating,
                 reverse=1)
         except Exception as e:
             logging.error(e)
+            print e
             return render.error("查询错误！", '/statistics_all')
         return render.statistics_all(data)
 
