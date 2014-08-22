@@ -25,7 +25,7 @@ today = datetime.date.today()
 oj_info = [
 ["hdoj_solved", 14, "http://acm.hdu.edu.cn/userstatus.php?user=%s", "<tr><td>Problems Solved</td><td align=center>(\d+)</td></tr>"],
 ["cf_rating", 16, "http://codeforces.com/profile/%s", "<span style=\"font-weight:bold;\" class=\"user-.*?\">(\d+)</span> <span"],
-["tc_rating", 18, "http://community.topcoder.com/tc?module=SimpleSearch&ha=%s", "<span class=\"coderTextGray\">(\d+)</span>"],
+["tc_rating", 18, "http://community.topcoder.com/tc?module=SimpleSearch&ha=%s", "Rating</a></h3>[\s\S]*?<span class=\".*?\">(\d+)</span>"],
 ["bc_rating", 20, "http://bestcoder.hdu.edu.cn/rating.php?user=%s", "<p>Rating: </p>[\s\S]*?<p>(\d+) \(max \d+\)</p>"],
 ]
 
