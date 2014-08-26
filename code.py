@@ -352,6 +352,11 @@ class edituser:
                             db.query(
                                 'update user set tc_id="%s" where user_id="%s"' %
                                 (value.encode('utf-8'), l))
+                        elif key.startswith('edituserbcname'):
+                            l = key.split('-')[1]
+                            db.query(
+                                'update user set bc_id="%s" where user_id="%s"' %
+                                (value.encode('utf-8'), l))
                         else:
                             return render.error('input error !', '/admin')
                     except Exception as e:
